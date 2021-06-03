@@ -1,0 +1,10 @@
+.DS_Store
+
+/build
+.vscode
+out
+node_modules
+*pvpkcs11*?
+.idea
+
+nss
