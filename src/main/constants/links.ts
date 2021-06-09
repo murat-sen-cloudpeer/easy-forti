@@ -3,4 +3,4 @@ export const JWS_LINK = 'https://fortifyapp.com/packages/update.jws';
 export const DOWNLOAD_LINK = 'https://fortifyapp.com/#download_app';
 export const GITHUB_REPO_LINK = 'https://github.com/PeculiarVentures/fortify';
 export const TOOLS_LINK = 'https://tools.fortifyapp.com/';
-export const SERVICE_URL = 'https://imza.io/dsign/ws';
+export const SERVICE_URL = 'https://imza.io/esig.hub/ws';

@@ -7,7 +7,6 @@ import { JWS_LINK, APP_DIR } from './constants';
 import logger from './logger';
 import * as jws from './jws';
 import { UpdateError } from './errors';
-import { l10n } from './l10n';
 
 type UpdateInfo = {
   version: string;

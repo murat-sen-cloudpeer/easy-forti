@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-continue */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable no-restricted-syntax */

@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable max-len */
 import { app, screen, nativeTheme } from 'electron';
 import * as fs from 'fs';
 import * as os from 'os';
@@ -73,7 +75,7 @@ export class Application {
       app.dock.hide();
     }
 
-    app.allowRendererProcessReuse = true;
+    // app.allowRendererProcessReuse = true;
 
     /**
      * Don't quit when all windows are closed.
@@ -92,6 +94,7 @@ export class Application {
     try {
       await app.whenReady();
 
+      app.setAppUserModelId('imza.io EASY');
       /**
        * Print screen size after app is ready.
        */
@@ -116,12 +119,6 @@ export class Application {
        * Init server service.
        */
       await this.initServer();
-
-      /**
-       * Init ipc server events.
-       */
-      ipcMessages.initServerEvents();
-
       /**
        * Init application auto updater.
        */
@@ -157,7 +154,7 @@ export class Application {
     let lang = this.config.locale;
 
     if (!lang) {
-      lang = app.getLocale().split('-')[0];
+      lang = app.getLocale().split('-')[0] || 'tr';
     }
 
     l10n.setLang(lang);
@@ -238,7 +235,7 @@ export class Application {
 
     autoUpdater.on('update-available', (info) => {
       sendToRenderers('ipc-update-available', info);
-      tray.setIcon(true);
+      tray.setIcon();
     });
 
     autoUpdater.on('update-not-available', () => {
@@ -260,4 +257,28 @@ export class Application {
       );
     }
   }
+  /*
+  private registerSCardService = async () => {
+    eventHub.on('cards-updated', (cards, certificates) => {
+      try {
+        tray.setCertificates(certificates);
+        this.socketService.createSession(certificates);
+      } catch (error) {
+        logger.error('application', error);
+      }
+    });
+
+    this.usbDevices = new UsbMonitor();
+  };
+
+  private registerSocketService = () => {
+    this.socketService = new SocketService();
+    this.socketService.on('status', (status: (string & 'connecting') | 'connected' | 'disconnected') => tray.setOnline(status));
+    this.socketService.on('sign-request', (signRequest: any) => this.showSigningWindow(signRequest));
+  };
+
+  private showSigningWindow = (signRequest: any) => {
+
+  };
+  */
 }

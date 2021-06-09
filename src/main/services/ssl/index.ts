@@ -253,9 +253,9 @@ export class SslService {
       });
 
       try {
-        this.installer.install(constants.APP_SSL_CERT_CA);
+        // this.installer.install(constants.APP_SSL_CERT_CA);
 
-        logger.info('ssl-service', 'Certificate added to trusted storages');
+        // logger.info('ssl-service', 'Certificate added to trusted storages');
       } catch (error) {
         logger.error('ssl-service', 'Cannot install SSL certificate', {
           error: error.message,
@@ -278,7 +278,7 @@ export class SslService {
       // #endregion
     } else {
       try {
-        this.installer.installFirefox(constants.APP_SSL_CERT_CA);
+        // this.installer.installFirefox(constants.APP_SSL_CERT_CA);
       } catch (error) {
         logger.error('ssl-service', 'Install Firefox', {
           error: error.message,

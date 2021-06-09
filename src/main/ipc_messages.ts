@@ -1,3 +1,6 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-extraneous-dependencies */
 import {
   ipcMain,
   shell,
@@ -6,15 +9,10 @@ import {
   nativeTheme,
 } from 'electron';
 import { APP_LOG_FILE } from './constants';
-import { windowsController } from './windows';
 import { l10n } from './l10n';
 import logger, { loggingSwitch, loggingAnalyticsSwitch } from './logger';
-import { ServerStorage } from './server_storage';
 import { setConfig, getConfig } from './config';
-import container from './container';
 import { autoUpdater } from './updater';
-
-const serverStorage = container.resolve(ServerStorage);
 
 export const sendToRenderers = (channel: string, data?: any) => {
   const browserWindows = BrowserWindow.getAllWindows();
@@ -24,40 +22,6 @@ export const sendToRenderers = (channel: string, data?: any) => {
       window.webContents.send(channel, data);
     }
   });
-};
-
-// TODO: Maybe move to application.
-const initServerEvents = () => {
-  ipcMain
-    .on('ipc-2key-list-get', async (event: IpcMainEvent) => {
-      const identities = await serverStorage.getIdentities();
-
-      event.returnValue = identities;
-    })
-    .on('ipc-identity-changed', () => {
-      sendToRenderers('ipc-2key-changed');
-    })
-    .on('ipc-2key-remove', async (event: IpcMainEvent, arg: any) => {
-      try {
-        const questionWindowResult = await windowsController.showQuestionWindow({
-          text: l10n.get('question.2key.remove', arg),
-          id: 'question.2key.remove',
-          result: 0,
-        }, windowsController.windows.preferences.window);
-
-        if (questionWindowResult.result) {
-          logger.info('ipc-messages', 'Removing 2key session key', {
-            arg,
-          });
-
-          await serverStorage.removeIdentity(arg);
-
-          event.sender.send('ipc-2key-changed');
-        }
-      } catch {
-        //
-      }
-    });
 };
 
 const initEvents = () => {
@@ -146,6 +110,5 @@ const initEvents = () => {
 };
 
 export const ipcMessages = {
-  initServerEvents,
   initEvents,
 };

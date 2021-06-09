@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { MenuItemConstructorOptions } from 'electron';
 import { l10n } from '../l10n';
 import { windowsController } from '../windows';

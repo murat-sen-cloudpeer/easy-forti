@@ -1,9 +1,13 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable class-methods-use-this */
 
 import {
   BrowserWindow as ElectronWindow,
   shell,
   globalShortcut,
+  ipcRenderer,
 } from 'electron';
 import * as url from 'url';
 import logger from '../logger';
@@ -109,6 +113,9 @@ export class BrowserWindow {
     });
 
     this.window.on('closed', options.onClosed);
+
+    ipcRenderer.on('close', (event, args) => { this.close(); });
+    ipcRenderer.on('getCurrentWindow', (event, args) => { event.returnValue = this.getParams(); });
   }
 
   private getWindowDefaultOptions(): Electron.BrowserWindowConstructorOptions {
@@ -127,7 +134,6 @@ export class BrowserWindow {
         nodeIntegration: true,
         // Prevent open DevTools on production
         devTools: constants.isDevelopment,
-        enableRemoteModule: true,
       },
     };
   }

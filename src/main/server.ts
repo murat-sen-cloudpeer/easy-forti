@@ -1,14 +1,15 @@
+/* eslint-disable no-prototype-builtins */
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-extraneous-dependencies */
 import * as crypto from 'crypto';
-import { shell, app, ipcMain } from 'electron';
-import { setEngine } from '2key-ratchet';
-import * as wsServer from '@webcrypto-local/server';
+import { shell, ipcMain, app } from 'electron';
 import type { Cards } from '@webcrypto-local/cards';
 import * as querystring from 'querystring';
 import * as os from 'os';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as semver from 'semver';
-import { SslService } from './services';
+import { setEngine } from '@webcrypto-local/server';
 import * as constants from './constants';
 import logger from './logger';
 import { windowsController } from './windows';
@@ -17,9 +18,12 @@ import * as jws from './jws';
 import { request } from './utils';
 import { getConfig } from './config';
 import './crypto';
+import { EasyHub, IServerOptions } from './server/server';
+import { WebCryptoLocalError } from './server/error';
+import { SslService } from './services';
 
 export class Server {
-  server!: wsServer.LocalServer;
+  server!: EasyHub;
 
   config: IConfigure;
 
@@ -28,7 +32,7 @@ export class Server {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private fillPvPKCS11(options: wsServer.IServerOptions) {
+  private fillPvPKCS11(options: IServerOptions) {
     if (!options.config.pvpkcs11) {
       options.config.pvpkcs11 = [];
     }
@@ -46,7 +50,7 @@ export class Server {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private fillOpenScOptions(options: wsServer.IServerOptions) {
+  private fillOpenScOptions(options: IServerOptions) {
     const platform = os.platform();
 
     switch (platform) {
@@ -63,18 +67,18 @@ export class Server {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  private load(options: wsServer.IServerOptions) {
+  private load(options: IServerOptions) {
     setEngine('@peculiar/webcrypto', (global as any).crypto);
 
     this.fillPvPKCS11(options);
     this.fillOpenScOptions(options);
 
-    this.server = new wsServer.LocalServer(options);
+    this.server = new EasyHub(options);
   }
 
   // eslint-disable-next-line class-methods-use-this
   async init() {
-    wsServer.setEngine('@peculiar/webcrypto', (global as any).crypto);
+    await this.prepareConfig();
 
     const sslService = new SslService();
 
@@ -95,7 +99,7 @@ export class Server {
       return;
     }
 
-    const sslData: wsServer.IServerOptions = {
+    const sslData: IServerOptions = {
       cert: fs.readFileSync(constants.APP_SSL_CERT),
       key: fs.readFileSync(constants.APP_SSL_KEY),
     } as any;
@@ -106,7 +110,6 @@ export class Server {
 
     // @ts-ignore
     sslData.config = this.config;
-    sslData.storage = await wsServer.FileStorage.create();
 
     try {
       this.load(sslData);
@@ -121,16 +124,14 @@ export class Server {
   }
 
   run() {
-    // TODO: server olarak değil client olarak düzenlenecek.
-
     this.server
       .on('listening', (address: string) => {
         logger.info('server', 'Started', {
           address,
         });
       })
-      .on('info', (level, source, message, data) => {
-        logger.log(level, source, message, data);
+      .on('info', (level: string, source: string, message: string, data: object | undefined) => {
+        logger.info(source, message, data);
       })
       .on('token_new', async (card) => {
         const atr = card.atr.toString('hex');
@@ -149,8 +150,6 @@ export class Server {
               .replace(/\$\{reader\}/g, card.reader)
               .replace(/\$\{atr\}/g, atr.toUpperCase())
               .replace(/\$\{driver\}/g, crypto.randomBytes(20).toString('hex').toUpperCase());
-
-            // TODO: servise method eklendikten sonra güncellenecek.
             const url = `${constants.GITHUB_REPO_LINK}/issues/new?${querystring.stringify({
               title,
               body,
@@ -165,6 +164,16 @@ export class Server {
           });
         }
       })
+      .on('token', (card) => {
+        try {
+          logger.info('server', 'token', card);
+        } catch (error) {
+          logger.error('server', 'Token window', {
+            error: error.message,
+            stack: error.stack,
+          });
+        }
+      })
       .on('error', (error: Error) => {
         logger.error('server', 'Server event error', {
           error: error.message,
@@ -172,8 +181,8 @@ export class Server {
         });
 
         if (error.hasOwnProperty('code') && error.hasOwnProperty('type')) {
-          const err = error as wsServer.WebCryptoLocalError;
-          const { CODE } = wsServer.WebCryptoLocalError;
+          const err = error as WebCryptoLocalError;
+          const { CODE } = WebCryptoLocalError;
 
           switch (err.code) {
             case CODE.PCSC_CANNOT_START:
@@ -240,7 +249,7 @@ export class Server {
             if (p11PinWindowResult.pin) {
               params.resolve(p11PinWindowResult.pin);
             } else {
-              params.reject(new wsServer.WebCryptoLocalError(10001, 'Incorrect PIN value. It cannot be empty.'));
+              params.reject(new WebCryptoLocalError(10001, 'Incorrect PIN value. It cannot be empty.'));
             }
 
             break;
@@ -258,9 +267,8 @@ export class Server {
       .on('identity_changed', () => {
         ipcMain.emit('ipc-identity-changed');
       });
-      this.server.cardReader?.start();
 
-    // this.server.listen('127.0.0.1:31337');
+    this.server.start('https://imza.io/esig.hub/ws');
   }
 
   private async prepareConfig() {
@@ -316,7 +324,6 @@ export class Server {
 
   // eslint-disable-next-line class-methods-use-this
   private async prepareCardJson() {
-    // TODO: veriler imza.io dan yüklenmeli
     try {
       if (!fs.existsSync(constants.APP_CARD_JSON)) {
         // try to get the latest card.json from git
@@ -326,10 +333,10 @@ export class Server {
           // try to parse
           const card: Cards = await jws.getContent(message);
 
-          // copy card.json to .imza.io
+          // copy card.json to .fortify
           fs.writeFileSync(constants.APP_CARD_JSON, JSON.stringify(card, null, '  '), { flag: 'w+' });
 
-          logger.info('server', 'card.json was copied to .imza.io', {
+          logger.info('server', 'card.json was copied to .fortify', {
             version: card.version,
             from: constants.APP_CARD_JSON_LINK,
           });
@@ -348,7 +355,7 @@ export class Server {
         const original: Cards = require('@webcrypto-local/cards/lib/card.json');
         fs.writeFileSync(constants.APP_CARD_JSON, JSON.stringify(original, null, '  '), { flag: 'w+' });
 
-        logger.info('server', 'card.json was copied to .imza.io from modules', {
+        logger.info('server', 'card.json was copied to .fortify from modules', {
           version: original.version,
         });
       } else {
@@ -358,6 +365,7 @@ export class Server {
 
         let remote: Cards | undefined;
 
+        /*
         try {
           const jwsString = await request(constants.APP_CARD_JSON_LINK);
           remote = await jws.getContent(jwsString);
@@ -368,16 +376,17 @@ export class Server {
             stack: error.stack,
           });
         }
+        */
 
         const local: Cards = JSON.parse(
           fs.readFileSync(constants.APP_CARD_JSON, { encoding: 'utf8' }),
         );
 
         if (remote && semver.lt(local.version || '0.0.0', remote.version || '0.0.0')) {
-          // copy card.json to .imza.io
+          // copy card.json to .fortify
           fs.writeFileSync(constants.APP_CARD_JSON, JSON.stringify(remote, null, '  '), { flag: 'w+' });
 
-          logger.info('server', 'card.json was copied to .imza.io', {
+          logger.info('server', 'card.json was copied to .fortify', {
             version: remote.version,
             from: constants.APP_CARD_JSON_LINK,
           });
