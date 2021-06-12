@@ -14,6 +14,7 @@ import logger from '../logger';
 import { ServerOptions, Session, Notification as Notify } from '../../@types/connection';
 import { Server } from './connection';
 import { icons } from '../constants/files';
+import { windowsController } from '../windows';
 
 export interface IServerOptions extends ServerOptions {
   config: IProviderConfig;
@@ -69,12 +70,21 @@ export class EasyHub extends core.EventLogEmitter {
         }
       })
       .on('request-signature', (request) => {
-        try {
-          const signedData = this.provider.sign(request.identityNo, request.signatureRequest, '8284');
+        const dialog = windowsController.showP11PinWindow(
+          {
+            pin: '',
+            request,
+            origin: '',
+          },
+        );
+
+        dialog.then((result) => {
+          const signedData = this.provider.sign(request.identityNo, request.signatureRequest, result.pin);
           request.resolve(request.messageId, signedData);
-        } catch (err) {
-          request.reject(request.messageId, err);
-        }
+        }).catch((error) => {
+          logger.error('server', error.message, error);
+          request.reject(request.messageId, error);
+        });
       })
       .on('notify', (notification) => {
         const appNotice = new Notification({
@@ -136,7 +146,7 @@ export class EasyHub extends core.EventLogEmitter {
         // tray.setCertificates(this.provider.cardSessions);
         // this.server.setSessions(this.provider.cardSessions);
       })
-      .on('update-token', () => {
+      .on('update-token', async () => {
         logger.info('server', 'update-token', this.provider.cardSessions.map((c) => ({
           identityNo: c.identityNo,
           issuer: c.issuer,
@@ -144,7 +154,7 @@ export class EasyHub extends core.EventLogEmitter {
           slotInfo: c.slotInfo,
         })));
         tray.setCertificates(this.provider.cardSessions);
-        this.server.setSessions(this.provider.cardSessions);
+        await this.server.setSessions(this.provider.cardSessions);
       });
   }
 

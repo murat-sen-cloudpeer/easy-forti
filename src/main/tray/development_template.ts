@@ -119,17 +119,6 @@ export const developmentTemplate = (): MenuItemConstructorOptions[] => ([
           );
         },
       },
-      {
-        label: 'P11 PIN',
-        click: () => {
-          windowsController.showP11PinWindow(
-            {
-              pin: '',
-              origin: 'https://TEST.com/',
-            },
-          );
-        },
-      },
     ],
   },
 ]);

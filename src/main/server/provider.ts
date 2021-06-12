@@ -365,6 +365,7 @@ export class LocalProvider extends core.EventLogEmitter {
         continue;
       }
     }
+    await pauseAsync(200);
     this.emit('update-token', this.cardSessions.map((s) => {
       const info = getSlotInfo(s.crypto);
       info.atr = Convert.ToHex(s.card.atr || Buffer.alloc(0));
@@ -373,6 +374,7 @@ export class LocalProvider extends core.EventLogEmitter {
 
       return info;
     }));
+    await pauseAsync();
   }
 
   public async onTokenRemove(card: Card) {
@@ -454,6 +456,7 @@ export class LocalProvider extends core.EventLogEmitter {
 
       return info;
     }));
+    await pauseAsync();
   }
 
   protected onCryptoAdd(e: MapChangeEvent<Pkcs11Crypto>) {

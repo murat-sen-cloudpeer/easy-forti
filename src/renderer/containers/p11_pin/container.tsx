@@ -43,6 +43,11 @@ export default class Container extends React.Component<IContainerProps> {
     onApprove(password);
   };
 
+  onReject = () => {
+    const { onReject } = this.props;
+    onReject();
+  };
+
   render() {
     const {
       onReject,
@@ -63,6 +68,8 @@ export default class Container extends React.Component<IContainerProps> {
           ]}
           onApprove={this.onApprove}
           onReject={onReject}
+          textReject={intl('reject')}
+          textApprove={intl('sign')}
         >
           <TextField
             placeholder="Password"

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as React from 'react';
 import { Button, Typography } from 'lib-react-components';
 import { IntlContext } from '../intl';

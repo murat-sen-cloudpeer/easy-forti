@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import * as React from 'react';
 import { Typography, Box } from 'lib-react-components';
 import { ModalLayout } from '../../components/layouts';
@@ -55,7 +56,6 @@ export default class Container extends React.Component<IContainerProps> {
           ]}
           onApprove={onApprove}
           onReject={onReject}
-          textApprove={intl('approve')}
         >
           {pin.split('').map((char, index) => (
             <Box

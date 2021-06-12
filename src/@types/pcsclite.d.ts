@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable max-len */
 import { EventEmitter } from 'events';

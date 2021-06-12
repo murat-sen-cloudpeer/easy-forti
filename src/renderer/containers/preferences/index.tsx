@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ipcRenderer, IpcRendererEvent } from 'electron';
@@ -80,9 +79,6 @@ class Root extends WindowProvider<{}, IRootState> {
     ipcRenderer.on('ipc-update-available', this.onUpdateAvailableListener);
     ipcRenderer.on('ipc-update-not-available', this.onUpdateNotAvailableListener);
     ipcRenderer.on('ipc-update-error', this.onUpdateErrorListener);
-    ipcRenderer.on('pong-event', (event, arg) => {
-      // do something
-    });
 
     /**
      * Window section.

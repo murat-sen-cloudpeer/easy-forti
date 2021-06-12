@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/extensions */
 import {
   screen,
   BrowserWindow as ElectronWindow,
@@ -8,11 +8,13 @@ import { l10n } from '../l10n';
 import { windowSizes } from '../constants';
 import logger from '../logger';
 import { DialogsStorage } from './dialogs_storage';
+import { RequestSignature } from '../../@types/connection';
 
 interface IP11PinWindowParams {
   pin: string;
   origin: string;
   label?: string;
+  request: RequestSignature,
 }
 
 interface IKeyPinWindowParams {

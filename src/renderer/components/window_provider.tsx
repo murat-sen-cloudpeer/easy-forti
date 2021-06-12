@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+import { remote } from 'electron';
 import * as React from 'react';
 import * as winston from 'winston';
-import { ipcRenderer } from 'electron';
 import { IntlProvider } from './intl';
 import DocumentTitle from './document_title';
 
@@ -13,18 +12,18 @@ export default abstract class WindowProvider<P, S> extends React.Component<P, S>
   constructor(props: P) {
     super(props);
 
-    this.params = ipcRenderer.sendSync('getCurrentWindow') || {};
+    this.params = (remote.getCurrentWindow() as any).params || {};
   }
 
   // eslint-disable-next-line class-methods-use-this
   protected onClose(...args: any[]) {
-    // logger.info('WindowProvider', 'onClose', args);
+    console.log(args);
   }
 
   close = (...args: any[]) => {
     this.onClose(...args);
 
-    ipcRenderer.sendSync('close');
+    remote.getCurrentWindow().close();
   };
 
   abstract renderChildrens(): JSX.Element;
