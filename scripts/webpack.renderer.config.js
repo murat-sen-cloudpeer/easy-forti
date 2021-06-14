@@ -24,17 +24,13 @@ module.exports = merge.smart(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.sass$/,
+        test: /\.((c|sa|sc)ss)$/i,
         use: [
           'style-loader',
           {
             loader: 'css-loader',
             options: {
               importLoaders: 1,
-              modules: {
-                mode: 'local',
-                localIdentName: '[local]_[hash:base64:5]',
-              },
             },
           },
           'sass-loader',

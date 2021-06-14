@@ -20,7 +20,7 @@ export default abstract class WindowProvider<P, S> extends React.Component<P, S>
     console.log(args);
   }
 
-  close = (...args: any[]) => {
+  protected close = (...args: any[]) => {
     this.onClose(...args);
 
     remote.getCurrentWindow().close();

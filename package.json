@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
+    "@fontsource/montserrat": "^4.4.5",
     "@microsoft/signalr": "^5.0.6",
     "@peculiar/asn1-schema": "^2.0.26",
     "@peculiar/asn1-x509": "^2.0.26",
@@ -81,6 +82,7 @@
     "@webcrypto-local/cards": "^1.6.3",
     "@webcrypto-local/server": "^1.6.4",
     "asn1js": "^2.0.26",
+    "bootstrap": "^5.0.1",
     "classnames": "^2.2.6",
     "get-proxy-settings": "^0.1.11",
     "jose-jwe-jws": "github:microshine/js-jose",
@@ -97,6 +99,7 @@
     "semver": "^6.3.0",
     "sudo-prompt": "^9.2.1",
     "tsyringe": "^4.3.0",
+    "typeface-montserrat": "^1.1.13",
     "uuid": "^8.3.1",
     "webcrypto-core": "^1.1.8",
     "winston": "^3.3.3",

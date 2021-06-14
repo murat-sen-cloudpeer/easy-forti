@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/no-unused-state */
 import * as React from 'react';
 import { ipcRenderer } from 'electron';
 import { IntlContext, IIntlContext } from './intl_context';

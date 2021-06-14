@@ -18,7 +18,7 @@ module.exports = {
     Buffer: false,
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.json'],
+    extensions: ['.tsx', '.ts', '.js', '.css', '.json'],
   },
   module: {
     rules: [

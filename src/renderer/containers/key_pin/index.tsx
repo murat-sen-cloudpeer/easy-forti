@@ -19,6 +19,7 @@ class Root extends WindowProvider<{}, {}> {
       <Container
         onReject={this.onReject}
         onApprove={this.onApprove}
+        onClose={this.onClose}
         origin={this.params.origin}
         pin={this.params.pin}
       />

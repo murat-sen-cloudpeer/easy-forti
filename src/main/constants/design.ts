@@ -4,7 +4,7 @@ export const windowSizes = {
     height: 300,
   },
   default: {
-    width: 600,
-    height: 500,
+    width: 650,
+    height: 550,
   },
 };

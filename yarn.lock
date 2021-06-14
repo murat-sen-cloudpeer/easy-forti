@@ -71,6 +71,11 @@
     "global-agent" "^2.0.2"
     "global-tunnel-ng" "^2.7.1"
 
+"@fontsource/montserrat@^4.4.5":
+  "integrity" "sha512-1F3cR9OIp4Qi1AJHFg/SeFeUWLYemMgI3ldetx0mrlHoWeMuK+p2YentYIIZVkV9ogXOIE2QEw7VnHlGBPo7iw=="
+  "resolved" "https://registry.npmjs.org/@fontsource/montserrat/-/montserrat-4.4.5.tgz"
+  "version" "4.4.5"
+
 "@hypnosphi/create-react-context@^0.3.1":
   "integrity" "sha512-V1klUed202XahrWJLLOT3EXNeCpFHCcJntdFGI15ntCwau+jfT386w7OFTMaCqOgXUH1fa0w/I1oZs+i/Rfr0A=="
   "resolved" "https://registry.npmjs.org/@hypnosphi/create-react-context/-/create-react-context-0.3.1.tgz"
@@ -256,6 +261,11 @@
   dependencies:
     "bindings" "^1.5.0"
     "nan" "^2.14.0"
+
+"@popperjs/core@^2.9.2":
+  "integrity" "sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q=="
+  "resolved" "https://registry.npmjs.org/@popperjs/core/-/core-2.9.2.tgz"
+  "version" "2.9.2"
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   "integrity" "sha1-m4sMxmPWaafY9vXQiToU00jzD78="
@@ -1205,6 +1215,11 @@
   "integrity" "sha512-YN6UmV0FfLlBVvRvNPx3pz5W/mUoYB24J4WSXOKP/OOJpi+Oq6WYqPaNTHzjI0QzwWtnvEd5CGYyQPgp1jFxnw=="
   "resolved" "https://registry.npmjs.org/boolean/-/boolean-3.1.2.tgz"
   "version" "3.1.2"
+
+"bootstrap@^5.0.1":
+  "integrity" "sha512-Fl79+wsLOZKoiU345KeEaWD0ik8WKRI5zm0YSPj2oF1Qr+BO7z0fco6GbUtqjoG1h4VI89PeKJnMsMMVQdKKTw=="
+  "resolved" "https://registry.npmjs.org/bootstrap/-/bootstrap-5.0.1.tgz"
+  "version" "5.0.1"
 
 "brace-expansion@^1.1.7":
   "integrity" "sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA=="
@@ -6633,6 +6648,11 @@
   "integrity" "sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c="
   "resolved" "https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz"
   "version" "0.0.6"
+
+"typeface-montserrat@^1.1.13":
+  "integrity" "sha512-Pklkyj0e+K+6I/t0M6JBDBphpfJkF1k+3qd8qDnp9aVtCC7oGBQWTAcL6+5eArfGe7h73uPwyal73hEkf9YCUA=="
+  "resolved" "https://registry.npmjs.org/typeface-montserrat/-/typeface-montserrat-1.1.13.tgz"
+  "version" "1.1.13"
 
 "typescript@^2.7 || ^3", "typescript@^3.9.7", "typescript@>=2.7", "typescript@>=2.8.0 || >= 3.2.0-dev || >= 3.3.0-dev || >= 3.4.0-dev || >= 3.5.0-dev || >= 3.6.0-dev || >= 3.6.0-beta || >= 3.7.0-dev || >= 3.7.0-beta":
   "integrity" "sha512-kdMjTiekY+z/ubJCATUPlRDl39vXYiMV9iyeMuEuXZh2we6zz80uovNN2WlAxmmdE/Z/YQe+EbOEXB5RHEED3w=="

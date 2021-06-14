@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/extensions */
 import {
   screen,
@@ -10,13 +11,23 @@ import logger from '../logger';
 import { DialogsStorage } from './dialogs_storage';
 import { RequestSignature } from '../../@types/connection';
 
-interface IP11PinWindowParams {
-  pin: string;
-  origin: string;
-  label?: string;
-  request: RequestSignature,
+export interface ISignatureWindowParams {
+  request: RequestSignature;
+  onSign: (pin:string)=>Promise<void>;
+  onReject?: ()=>Promise<void>;
+  onCancel: ()=>Promise<void>;
+  onError: (error: Error)=>Promise<void>;
 }
 
+interface IRejectWindowParams {
+  id: string;
+  showAgain?: boolean;
+  showAgainValue?: boolean;
+  text: string;
+  result: number;
+  buttonRejectLabel?: string;
+  buttonApproveLabel?: string;
+}
 interface IKeyPinWindowParams {
   accept: boolean;
   pin: string;
@@ -53,6 +64,27 @@ class WindowsController {
     return screen.getPrimaryDisplay().bounds;
   }
 
+  // eslint-disable-next-line class-methods-use-this
+  showSignatureWindow(params: ISignatureWindowParams): Promise<void> {
+    return new Promise((resolve) => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const browserWindow = new BrowserWindow({
+        params: {
+          ...params,
+        },
+        size: 'default',
+        app: 'p11-pin',
+        windowOptions: {
+          alwaysOnTop: true,
+        },
+        title: l10n.get('p11-pin'),
+        onClosed: () => {
+          resolve();
+        },
+      });
+    });
+  }
+
   showPreferencesWindow(defaultTab?: ('about' | 'updates' | 'settings')) {
     return new Promise<void>((resolve) => {
       const params = {
@@ -86,26 +118,6 @@ class WindowsController {
           delete this.windows.preferences;
 
           resolve();
-        },
-      });
-    });
-  }
-
-  // eslint-disable-next-line class-methods-use-this
-  showP11PinWindow(params: IP11PinWindowParams): Promise<IP11PinWindowParams> {
-    return new Promise((resolve) => {
-      const browserWindow = new BrowserWindow({
-        params: {
-          ...params,
-        },
-        size: 'default',
-        app: 'p11-pin',
-        windowOptions: {
-          alwaysOnTop: true,
-        },
-        title: params.label || l10n.get('p11-pin'),
-        onClosed: () => {
-          resolve(browserWindow.getParams() as IP11PinWindowParams);
         },
       });
     });
@@ -228,6 +240,53 @@ class WindowsController {
         params.id
         && params.showAgain
         && DialogsStorage.hasDialog(params.id)
+      ) {
+        logger.info('windows', 'Don\'t show dialog It\'s disabled', {
+          id: params.id,
+        });
+
+        reject(new Error(`'${params.id}' window disabled`));
+
+        return;
+      }
+
+      const browserWindow = new BrowserWindow({
+        params: {
+          type: 'question',
+          titleKey: 'question',
+          ...params,
+        },
+        app: 'message',
+        size: 'small',
+        windowOptions: {
+          alwaysOnTop: true,
+          parent,
+          modal: !!parent,
+        },
+        title: l10n.get('question'),
+        onClosed: () => {
+          DialogsStorage.onDialogClose(browserWindow.window);
+
+          delete this.windows.question;
+
+          resolve(browserWindow.getParams() as IQuestionWindowParams);
+        },
+      });
+
+      this.windows.question = browserWindow;
+    });
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  showRejectWindow(
+    params: IQuestionWindowParams,
+    parent?: ElectronWindow,
+  ): Promise<IQuestionWindowParams> {
+    return new Promise((resolve, reject) => {
+      if (
+        params.id
+          && params.showAgain
+          && DialogsStorage.hasDialog(params.id)
       ) {
         logger.info('windows', 'Don\'t show dialog It\'s disabled', {
           id: params.id,

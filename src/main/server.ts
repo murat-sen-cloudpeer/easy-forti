@@ -240,21 +240,6 @@ export class Server {
             break;
           }
 
-          case 'pin': {
-            const p11PinWindowResult = await windowsController.showP11PinWindow({
-              ...params,
-              pin: '',
-            });
-
-            if (p11PinWindowResult.pin) {
-              params.resolve(p11PinWindowResult.pin);
-            } else {
-              params.reject(new WebCryptoLocalError(10001, 'Incorrect PIN value. It cannot be empty.'));
-            }
-
-            break;
-          }
-
           default:
             throw new Error('Unknown Notify param');
         }

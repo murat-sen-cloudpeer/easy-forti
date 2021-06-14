@@ -4,7 +4,7 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-param-reassign */
-import { Notification } from 'electron';
+import { Notification, Dialog, dialog } from 'electron';
 import * as core from '@webcrypto-local/core';
 import { PCSCCard } from './pcsc';
 import { IProviderConfig, LocalProvider } from './provider';
@@ -66,24 +66,50 @@ export class EasyHub extends core.EventLogEmitter {
           const signCerts = this.provider.getSigningCertificates(request.identityNo);
           request.resolve(request.messageId, signCerts);
         } catch (err) {
-          request.reject(request.messageId, err);
+          request.error(request.messageId, err);
         }
       })
       .on('request-signature', (request) => {
-        const dialog = windowsController.showP11PinWindow(
+        windowsController.showSignatureWindow(
           {
-            pin: '',
             request,
-            origin: '',
-          },
-        );
+            onSign: async (pin: string) => new Promise<void>((resolve, reject) => {
+              try {
+                const signedData = this.provider.sign(request.identityNo, request.signatureRequest, pin);
 
-        dialog.then((result) => {
-          const signedData = this.provider.sign(request.identityNo, request.signatureRequest, result.pin);
-          request.resolve(request.messageId, signedData);
-        }).catch((error) => {
+                request.resolve(request.messageId, signedData).then(() => {
+                  dialog.showMessageBox({
+                    type: 'info',
+                    buttons: ['ok'],
+                    message: `${request.signatureRequest.requestRef} referans numaralı doküman başarıyla imzalandı!`,
+                  });
+                  resolve();
+                }).catch((err) => {
+                  dialog.showMessageBox({
+                    type: 'warning',
+                    buttons: ['ok'],
+                    message: err.message,
+                  }).then(() => reject(err));
+                });
+              } catch (err) {
+                dialog.showMessageBox({
+                  type: 'warning',
+                  buttons: ['ok'],
+                  message: err.message === 'CKR_USER_NOT_LOGGED_IN' ? 'Hatalı PIN kodu girdiniz' : 'Bir hata oluştu',
+                  detail: err.message,
+                }).then(() => reject(err));
+              }
+            }),
+            onCancel: async () => new Promise<void>((resolve, reject) => {
+              request.cancel(request.messageId).then(() => resolve()).catch((err) => reject(err));
+            }),
+            onError: async (error: Error) => new Promise<void>((resolve, reject) => {
+              request.error(request.messageId, error).then(() => resolve()).catch((err) => reject(err));
+            }),
+          },
+        ).catch((error) => {
           logger.error('server', error.message, error);
-          request.reject(request.messageId, error);
+          request.error(request.messageId, error);
         });
       })
       .on('notify', (notification) => {

@@ -10,6 +10,7 @@ const s = require('./styles/container.sass');
 export interface IContainerProps {
   onApprove: () => void;
   onReject: () => void;
+  onClose: () => void;
   origin: string;
   pin: string;
 }
@@ -18,7 +19,7 @@ export default class Container extends React.Component<IContainerProps> {
   static contextType = IntlContext;
 
   onKeyDown = (e: KeyboardEvent) => {
-    const { onApprove, onReject } = this.props;
+    const { onApprove, onReject, onClose } = this.props;
 
     switch (e.keyCode) {
       case 13: // enter
@@ -26,7 +27,11 @@ export default class Container extends React.Component<IContainerProps> {
         break;
 
       case 27: // esc
-        onReject();
+        if (onReject) {
+          onReject();
+        } else {
+          onClose();
+        }
         break;
 
       default:
@@ -38,7 +43,7 @@ export default class Container extends React.Component<IContainerProps> {
     const {
       onApprove,
       onReject,
-      origin,
+      onClose,
       pin,
     } = this.props;
     const { intl } = this.context;
@@ -56,6 +61,9 @@ export default class Container extends React.Component<IContainerProps> {
           ]}
           onApprove={onApprove}
           onReject={onReject}
+          onCancel={onClose}
+          inProgress={false}
+          isValid
         >
           {pin.split('').map((char, index) => (
             <Box

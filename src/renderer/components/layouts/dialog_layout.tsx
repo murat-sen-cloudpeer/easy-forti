@@ -38,7 +38,7 @@ export default class DialogLayout extends React.Component<IDialogLayoutProps> {
           key="reject"
           onClick={onReject}
         >
-          {textReject || intl('close')}
+          {textReject || intl('reject')}
         </Button>
       ));
     }

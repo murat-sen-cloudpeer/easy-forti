@@ -1,0 +1,122 @@
+
+    .container_body {
+      display: flex;
+      height: calc(100% - 40px - 10px);
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+
+    .container_content {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    .request-panel {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      gap: 10px;
+    }
+
+      .request-panel .card {
+        border: 1px solid rgb(var(--grey_2));
+        border-radius: 2px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: small;
+      }
+
+      .request-panel .card small {
+        color: rgb(var(--primary));
+        font-weight: lighter;
+        font-size: smaller;
+        margin-top: -17px;
+        background-color: rgb(var(--white));
+        width: fit-content;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+
+      .request-panel .card .files {
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        list-style: none;
+        justify-content: flex-start;
+        overflow-x: scroll;
+        gap: 10px;
+      }
+
+        .request-panel .card .files .file-info {
+          display: flex;
+          height: 70px;
+          width: 70px;
+          border: 1px solid rgb(var(--grey_3));
+          text-align: center;
+          flex-direction: column;
+          font-size: xx-small;
+          font-stretch: narrower;
+          padding: 5px;
+          gap: 5px;
+        }
+
+      .request-panel .card .issuer {
+        font-size: xx-small;
+        font-stretch: narrower;
+      }
+
+    .signature-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      width: 30%;
+      font-size: small;
+      padding: 10px;
+    }
+
+      .signature-panel .keypad {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+        .signature-panel .keypad > div {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        .signature-panel .keypad button {
+          padding: 0.35rem;
+          display: inline-block;
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 0.5rem;
+          margin: 0.5rem;
+          text-align: center;
+          font-size: 1rem;
+          background-color: rgb(var(--grey_2));
+          color: rgb(var(--black));
+        }
+
+      .signature-panel .password {
+        font-family: monospace;
+        text-align: center;
+        letter-spacing: 10px;
+      }
+
+      .modal-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px;
+        align-items: center;
+      }

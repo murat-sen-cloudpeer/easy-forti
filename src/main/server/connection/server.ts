@@ -30,6 +30,7 @@ import {
 } from './events/proto';
 import { CardSession } from '../../../@types/pcsclite';
 import { Session } from '../../../@types/connection';
+import { X509Certificate } from '../crypto/openssl/pki/x509';
 
 /**
  * Https/wss server based on 2key-ratchet protocol
@@ -156,33 +157,33 @@ export class Server extends core.EventLogEmitter {
     this.options = options;
   }
 
-  public on(event: 'info', cb: core.LogHandler): this;
+  public on(event: 'request-signature', listener: (request: RequestSignature) => void): this;
+
+  public on(event: 'request-signing-cert', listener: (request: RequestSigningCert) => void): this;
 
   public on(event: 'connect', listener: (session?: Session) => void): this;
 
   public on(event: 'disconnect', listener: (error?: Error) => void): this;
 
-  public on(event: 'request-signature', listener: (request: RequestSignature) => void): this;
-
-  public on(event: 'request-signing-cert', listener: (request: RequestSigningCert) => void): this;
-
   public on(event: 'notify', listener: (notification: Notification) => void): this;
+
+  public on(event: 'info', cb: core.LogHandler): this;
 
   public on(event: string | symbol, listener: (...args: any[]) => void): this {
     return super.on(event, listener);
   }
 
-  public emit(event: 'info', level: core.LogLevel, source: string, message: string, data?: core.LogData): boolean;
+  public emit(event: 'request-signature', request: RequestSignature): boolean;
+
+  public emit(event: 'request-signing-cert', request: RequestSigningCert): boolean;
 
   public emit(event: 'connect', session?: Session): boolean;
 
   public emit(event: 'disconnect', error?: Error): boolean;
 
-  public emit(event: 'request-signature', request: RequestSignature): boolean;
-
-  public emit(event: 'request-signing-cert', request: RequestSigningCert): boolean;
-
   public emit(event: 'notify', notification: Notification): boolean;
+
+  public emit(event: 'info', level: core.LogLevel, source: string, message: string, data?: core.LogData): boolean;
 
   public emit(event: string | symbol, ...args: any[]): boolean {
     return super.emit(event, ...args);
@@ -239,20 +240,27 @@ export class Server extends core.EventLogEmitter {
       messageId,
       identityNo,
       resolve: (messageId, signCertificates) => this.replySigningCert(messageId, signCertificates),
-      reject: (messageId, error) => this.replyError(messageId, error),
+      error: (messageId, error) => this.replyError(messageId, error),
     });
   }
 
   private requestSignature(messageId: string, identityNo: string, signatureRequest: SignatureRequest) {
     logger.info('io', 'request-signature', { messageId, identityNo, signatureRequest });
-
-    this.emit('request-signature', {
+    const requestSignature: RequestSignature = {
       messageId,
       identityNo,
       signatureRequest,
-      resolve: (messageId, signedData) => this.replySignature(messageId, signedData),
-      reject: (messageId, error) => this.replyError(messageId, error),
+      resolve: async (messageId, signedData) => this.replySignature(messageId, signedData),
+      reject: (messageId, reason) => this.replyReject(messageId, reason),
+      cancel: (messageId) => this.replyCancel(messageId),
+      error: (messageId, error) => this.replyError(messageId, error),
+    };
+
+    this.session.cards.forEach((c) => {
+      requestSignature.certificate = c.certificate;
     });
+
+    this.emit('request-signature', requestSignature);
   }
 
   private async start() {
@@ -297,31 +305,91 @@ export class Server extends core.EventLogEmitter {
     }
   }
 
-  public replySigningCert(messageId: string, signCertificates: string[]) {
+  public async replySigningCert(messageId: string, signCertificates: string[]): Promise<void> {
     try {
-      this.connection.invoke('ReplySigningCert', messageId, signCertificates)
-        .then((r: any) => logger.info('io', r))
-        .catch((e: any) => logger.error('io', e));
+      return new Promise<void>((resolve, reject) => {
+        this.connection.invoke('ReplySigningCert', messageId, signCertificates)
+          .then((r: any) => {
+            logger.info('io', r);
+            resolve();
+          })
+          .catch((e: any) => {
+            logger.error('io', e);
+            reject();
+          });
+      });
     } catch (err) {
       logger.error('io', err.message, err);
     }
   }
 
-  public replySignature(messageId: string, signedData: string) {
+  public async replySignature(messageId: string, signedData: string): Promise<void> {
     try {
-      this.connection.invoke('ReplySignature', messageId, signedData)
-        .then((r: any) => logger.info('io', r))
-        .catch((e: any) => logger.error('io', e));
+      return new Promise<void>((resolve, reject) => {
+        this.connection.invoke('ReplySignature', messageId, signedData)
+          .then((r: any) => {
+            logger.info('io', r);
+            resolve();
+          })
+          .catch((e: any) => {
+            logger.error('io', e);
+            reject(e);
+          });
+      });
     } catch (err) {
       logger.error('io', err.message, err);
     }
   }
 
-  public replyError(messageId: string, error: Error) {
+  public async replyReject(messageId: string, reason: string): Promise<void> {
     try {
-      this.connection.invoke('ReplyError', messageId, error)
-        .then((r: any) => logger.info('io', r))
-        .catch((e: any) => logger.error('io', e));
+      return new Promise<void>((resolve, reject) => {
+        this.connection.invoke('ReplyReject', messageId, reason)
+          .then((r: any) => {
+            logger.info('io', r);
+            resolve();
+          })
+          .catch((e: any) => {
+            logger.error('io', e);
+            reject();
+          });
+      });
+    } catch (err) {
+      logger.error('io', err.message, err);
+    }
+  }
+
+  public async replyCancel(messageId: string): Promise<void> {
+    try {
+      return new Promise<void>((resolve, reject) => {
+        this.connection.invoke('ReplyCancel', messageId)
+          .then((r: any) => {
+            logger.info('io', r);
+            resolve();
+          })
+          .catch((e: any) => {
+            logger.error('io', e);
+            reject();
+          });
+      });
+    } catch (err) {
+      logger.error('io', err.message, err);
+    }
+  }
+
+  public async replyError(messageId: string, error: Error): Promise<void> {
+    try {
+      return new Promise<void>((resolve, reject) => {
+        this.connection.invoke('ReplyError', messageId, error)
+          .then((r: any) => {
+            logger.info('io', r);
+            resolve();
+          })
+          .catch((e: any) => {
+            logger.error('io', e);
+            reject();
+          });
+      });
     } catch (err) {
       logger.error('io', err.message, err);
     }

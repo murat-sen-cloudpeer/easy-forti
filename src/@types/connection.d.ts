@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /// <reference types="node" />
 import { ServerOptions as HttpsServerOptions } from 'https';
-import { X509Certificate } from '../main/server/crypto/openssl/pki/x509';
+import { X509Certificate } from '@peculiar/x509';
 import { CardSession } from './pcsclite';
 
 export interface ServerOptions extends HttpsServerOptions {
@@ -17,16 +17,19 @@ export interface ServerInfo {
 export interface RequestSigningCert {
   messageId: string;
   identityNo: string;
-  resolve: (messageId: string, signingCertInfos: string[]) => void;
-  reject: (messageId: string, error: Error) => void;
+  resolve: (messageId: string, signingCertInfos: string[]) => Promise<void>;
+  error: (messageId: string, error: Error) => Promise<void>;
 }
 
 export interface RequestSignature {
   messageId: string;
   identityNo: string;
   signatureRequest: SignatureRequest;
-  resolve: (messageId: string, signedData: string) => void;
-  reject: (messageId: string, error: Error) => void;
+  certificate?: X509Certificate;
+  resolve: (messageId: string, signedData: string) => Promise<void>;
+  reject: (messageId: string, reason: string) => Promise<void>;
+  cancel: (message: string) => Promise<void>;
+  error: (messageId: string, error: Error) => Promise<void>;
 }
 
 export interface SigningCertInfo {
