@@ -9,9 +9,9 @@ import {
 import classnames from 'classnames';
 import { IntlContext } from '../../components/intl';
 
-const s = require('./styles/sites.sass');
+const s = require('./styles/Requests.sass');
 
-interface ISitesProps {
+interface IRequestsProps {
   name: any;
   keys: {
     list: IKey[];
@@ -20,11 +20,11 @@ interface ISitesProps {
   };
 }
 
-interface ISitesState {
+interface IRequestsState {
   search: string;
 }
 
-export class Sites extends React.Component<ISitesProps, ISitesState> {
+export class Requests extends React.Component<IRequestsProps, IRequestsState> {
   static browsersList = [
     {
       title: 'Firefox',
@@ -55,7 +55,7 @@ export class Sites extends React.Component<ISitesProps, ISitesState> {
 
   static contextType = IntlContext;
 
-  constructor(props: ISitesProps) {
+  constructor(props: IRequestsProps) {
     super(props);
 
     this.state = {
@@ -95,7 +95,7 @@ export class Sites extends React.Component<ISitesProps, ISitesState> {
             {new Date(key.created).toLocaleDateString()}
           </Typography>
           <div className="clear">
-            {Sites.browsersList.map((browser) => (
+            {Requests.browsersList.map((browser) => (
               <img
                 className={s.image_browser}
                 key={browser.name}

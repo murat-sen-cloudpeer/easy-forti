@@ -5,14 +5,12 @@ import {
   Box,
   SegueHandler,
 } from 'lib-react-components';
-import classnames from 'classnames';
-import { Sites } from './sites';
+import { Requests } from './requests';
 import { About } from './about';
 import { Settings } from './settings';
-import { Updates } from './updates';
+import { Tools } from './tools';
 import { IntlContext } from '../../components/intl';
-
-const s = require('./styles/container.sass');
+import './styles/container.css';
 
 export interface IContainerProps {
   logging: {
@@ -64,7 +62,7 @@ export default class Container extends React.Component<IContainerProps, IContain
   renderNotificationBadge() {
     return (
       <Box
-        className={s.badge}
+        className="badge"
         fill="attention"
       />
     );
@@ -85,7 +83,7 @@ export default class Container extends React.Component<IContainerProps, IContain
 
     return (
       <Box
-        className={s.host}
+        className="host"
         fill="grey_1"
       >
         <Box
@@ -96,41 +94,41 @@ export default class Container extends React.Component<IContainerProps, IContain
             value={tab.value}
             align="left"
             onChange={this.handleChangeTab}
-            className={s.tabs}
+            className="tabs"
             color="grey_4"
             colorOn="black"
           >
             <Tab
-              value="sites"
-              className={classnames(s.tab, 'b3')}
+              value="requests"
+              className="tab b3"
             >
-              {intl('sites')}
+              {intl('requests')}
             </Tab>
             <Tab
               value="settings"
-              className={classnames(s.tab, 'b3')}
+              className="tab b3"
             >
               {intl('settings')}
             </Tab>
             <Tab
-              value="updates"
-              className={classnames(s.tab, 'b3')}
+              value="tools"
+              className="tab b3"
             >
-              {intl('updates')}
+              {intl('tools')}
               {update.info ? this.renderNotificationBadge() : null}
             </Tab>
             <Tab
               value="about"
-              className={classnames(s.tab, 'b3')}
+              className="tab b3"
             >
               {intl('about')}
             </Tab>
           </Tabs>
         </Box>
-        <div className={s.content}>
+        <div className="content">
           <SegueHandler value={tab.value}>
-            <Sites
-              name="sites"
+            <Requests
+              name="requests"
               keys={keys}
             />
             <Settings
@@ -140,8 +138,8 @@ export default class Container extends React.Component<IContainerProps, IContain
               telemetry={telemetry}
               theme={theme}
             />
-            <Updates
-              name="updates"
+            <Tools
+              name="tools"
               update={update}
             />
             <About

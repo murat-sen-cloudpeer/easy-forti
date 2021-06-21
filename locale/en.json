@@ -63,6 +63,7 @@
   "preferences": "Preferences...",
   "quit": "Quit",
 
+  "requests": "Requests To Sign",
   "requests.pending": "%1 pending request(s)",
   "requests.expiring": "You have pending request that are expiring",
   "requests.empty": "(No pending request)",

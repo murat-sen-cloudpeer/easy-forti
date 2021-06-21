@@ -1,0 +1,70 @@
+.container_body {
+  display: flex;
+  height: calc(100% - 40px - 10px);
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.container_content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  gap: 20px;
+}
+
+.tools-panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-evenly;
+}
+
+  .tools-panel .card {
+    justify-content: flex-start;
+    border: 1px solid rgb(var(--grey_2));
+    border-radius: 2px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    font-size: medium;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .tools-panel .card .icon {
+    display: flex;
+    width: 5em;
+    height: 5em;
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+
+    .tools-panel .card:hover {
+        box-shadow: none;
+        color: rgb(var(--primary));
+        transition: .3s all ease-in-out;
+        box-shadow: rgba(var(--black), 0.1) 0px 4px 6px -1px, rgba(var(--black), 0.06) 0px 2px 4px -1px;
+    }
+
+    .tools-panel .card:hover .icon {
+      transition: .1s all ease-in-out;
+      -webkit-filter: drop-shadow( 1px 1px 1px rgba(255, 255, 0, 0.2));
+      filter: drop-shadow( 1px 1px 1px rgba(255,255,0, .2));
+    }
+
+    .tools-panel .card small {
+      color: rgb(var(--gray_2));
+      font-weight: lighter;
+      font-size: small;
+      width: fit-content;
+    }
+
+
+
+.button {
+  padding: 0 30px;
+}

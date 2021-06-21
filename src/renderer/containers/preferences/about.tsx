@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Typography } from 'lib-react-components';
+import Logo from './svg/logo';
 import { IntlContext } from '../../components/intl';
-
-const s = require('./styles/about.sass');
+import './styles/about.css';
 
 interface IAboutProps {
   name: any;
@@ -14,40 +13,27 @@ export class About extends React.Component<IAboutProps> {
   static contextType = IntlContext;
 
   render() {
-    const { version } = this.props;
-    const { intl } = this.context;
-
     return (
-      <div className={s.root}>
-        <div>
-          <Typography
-            type="b3"
-          >
-            <a href="https://imza.io">imza.io</a> {intl('by')} <a href="https://cloudpeer.com.tr">Cloudpeer</a>
-          </Typography>
-          <Typography
-            type="b3"
-          >
-            {intl('version')} {version}
-          </Typography>
-          <br />
-          <Typography
-            type="b3"
-          >
-            {intl('made.with')}
-          </Typography>
-          <Typography
-            type="b3"
-          >
-            {intl('copyright')}. {intl('all.rights')}.
-          </Typography>
-        </div>
-        <div>
-          <img
-            src="../static/icons/logo.svg"
-            alt="imza.io logo"
-            width="38"
-          />
+      <div className="container_content">
+        <div className="about-panel">
+          <div className="about">
+            <div className="logo">
+              <Logo />
+            </div>
+            <div className="easy">E A S Y <sup>&reg;</sup></div>
+            <div className="version">Sürüm 1.0.48 - 21.06.2021</div>
+            <div className="thanks">&hearts;&nbsp;<small>Bu uygulama açık kaynaklı yazılımlar sayesinde geliştirilmiştir.</small>&nbsp;&hearts;</div>
+          </div>
+          <div className="footer">
+            <div className="copyright">© 2021 Lyfe Dijital Yazılım Ticaret A.Ş. Her hakkı saklıdır.</div>
+            <div className="links">
+              <a href="https://imza.io">Kullanım Koşulları</a>
+              &nbsp;-&nbsp;
+              <a href="https://imza.io">Gizlilik Bildirimi</a>
+              &nbsp;-&nbsp;
+              <a href="https://imza.io">Hizmet Sözleşmesi</a>
+            </div>
+          </div>
         </div>
       </div>
     );

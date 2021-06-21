@@ -63,9 +63,11 @@
   "preferences": "Tercihler...",
   "quit": "Çıkış",
 
+  "requests": "İmza Talepleri",
   "requests.pending": "%1 imza talebiniz var",
   "requests.expiring": "%1 içinde imza bekleyen talebiniz var",
   "requests.empty": "(Bekleyen talebiniz yok)",
 
   "certificates.empty": "(Sertifika bulunamadı)"
+
 }

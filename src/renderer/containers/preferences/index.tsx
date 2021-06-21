@@ -50,8 +50,8 @@ class Root extends WindowProvider<{}, IRootState> {
     /**
      * Keys section.
      */
-    this.keysListGet();
-    ipcRenderer.on('ipc-2key-changed', this.keysListGet);
+    // this.keysListGet();
+    // ipcRenderer.on('ipc-2key-changed', this.keysListGet);
 
     /**
      * Logging section.
@@ -74,7 +74,7 @@ class Root extends WindowProvider<{}, IRootState> {
     /**
      * Update section.
      */
-    ipcRenderer.send('ipc-update-check');
+    // ipcRenderer.send('ipc-update-check');
     ipcRenderer.on('ipc-checking-for-update', this.onUpdateChekingListener);
     ipcRenderer.on('ipc-update-available', this.onUpdateAvailableListener);
     ipcRenderer.on('ipc-update-not-available', this.onUpdateNotAvailableListener);

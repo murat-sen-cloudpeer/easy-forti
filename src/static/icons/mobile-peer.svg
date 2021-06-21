@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 275.538 280">
+<metadata>
+<vectornator:setting key="DimensionsVisible" value="1"/>
+<vectornator:setting key="PencilOnly" value="0"/>
+<vectornator:setting key="SnapToPoints" value="1"/>
+<vectornator:setting key="OutlineMode" value="0"/>
+<vectornator:setting key="CMYKEnabledKey" value="0"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="SnapToEdges" value="1"/>
+<vectornator:setting key="GuidesVisible" value="1"/>
+<vectornator:setting key="DisplayWhiteBackground" value="0"/>
+<vectornator:setting key="doHistoryDisabled" value="0"/>
+<vectornator:setting key="SnapToGuides" value="1"/>
+<vectornator:setting key="TimeLapseWatermarkDisabled" value="0"/>
+<vectornator:setting key="Units" value="Points"/>
+<vectornator:setting key="DynamicGuides" value="1"/>
+<vectornator:setting key="IsolateActiveLayer" value="0"/>
+<vectornator:setting key="SnapToGrid" value="0"/>
+</metadata>
+<defs>
+<linearGradient y1="32.25" id="LinearGradient" x1="14.75" y2="32.25" x2="47" gradientUnits="userSpaceOnUse" gradientTransform="matrix(4.5 0 0 4.5 10.7702 -7.19698)">
+<stop stop-color="#ff225c" offset="0"/>
+<stop stop-color="#2f292a" offset="1"/>
+</linearGradient>
+<path d="M113.688+134.222L125.069+134.222L125.069+137.45L113.688+137.45L113.688+134.222Z" fill-rule="evenodd" id="Mask"/>
+<path d="M113.688+147.612L116.939+147.612L116.939+151.677L113.688+151.677L113.688+147.612Z" fill-rule="evenodd" id="Mask_2"/>
+<path d="M113.688+174.034L116.939+174.034L116.939+178.099L113.688+178.099L113.688+174.034Z" fill-rule="evenodd" id="Mask_3"/>
+<path d="M113.688+160.823L125.069+160.823L125.069+164.888L113.688+164.888L113.688+160.823Z" fill-rule="evenodd" id="Mask_4"/>
+<path d="M113.688+188.261L125.069+188.261L125.069+191.615L113.688+191.615L113.688+188.261Z" fill-rule="evenodd" id="Mask_5"/>
+</defs>
+<g id="SvgjsG1024" vectornator:layerName="SvgjsG1024">
+<path d="M191.895+2.92802C190.653+2.92802+189.645+3.93602+189.645+5.17802L189.645+14.178C189.645+15.42+190.653+16.428+191.895+16.428C193.137+16.428+194.145+15.42+194.145+14.178L194.145+5.17802C194.145+3.93602+193.137+2.92802+191.895+2.92802ZM218.939+14.1341C218.363+14.1341+217.787+14.3545+217.348+14.7932L210.985+21.1565C210.108+22.034+210.108+23.4607+210.985+24.3382C211.422+24.7747+212+24.9886+212.576+24.9886C213.152+24.9886+213.726+24.7747+214.167+24.3382L220.53+17.9749C221.407+17.0974+221.407+15.6708+220.53+14.7932C220.091+14.3545+219.515+14.1341+218.939+14.1341ZM101.895+20.928C89.4887+20.928+79.3952+31.0215+79.3952+43.428L79.3952+52.428C78.1532+52.428+77.1452+53.436+77.1452+54.678L77.1452+68.178C77.1452+69.42+78.1532+70.428+79.3952+70.428L79.3952+83.928C78.1532+83.928+77.1452+84.936+77.1452+86.178L77.1452+90.678C77.1452+91.92+78.1532+92.928+79.3952+92.928L79.3952+97.428C78.1532+97.428+77.1452+98.436+77.1452+99.678L77.1452+104.178C77.1452+105.42+78.1532+106.428+79.3952+106.428L79.3952+250.428C79.3952+262.835+89.4887+272.928+101.895+272.928L191.895+272.928C204.302+272.928+214.395+262.835+214.395+250.428L214.395+79.428C215.637+79.428+216.645+78.42+216.645+77.178L216.645+54.678C216.645+53.436+215.637+52.428+214.395+52.428L214.395+43.428C214.395+31.0215+204.302+20.928+191.895+20.928L101.895+20.928ZM101.895+29.928L191.895+29.928C199.338+29.928+205.395+35.985+205.395+43.428L205.395+52.428L88.3952+52.428L88.3952+43.428C88.3952+35.985+94.4522+29.928+101.895+29.928ZM140.145+38.928C138.903+38.928+137.895+39.936+137.895+41.178C137.895+42.42+138.903+43.428+140.145+43.428L162.645+43.428C163.887+43.428+164.895+42.42+164.895+41.178C164.895+39.936+163.887+38.928+162.645+38.928L140.145+38.928ZM130.715+38.9895C130.287+39.079+129.887+39.292+129.572+39.6048C129.122+40.0143+128.895+40.6018+128.895+41.1868C128.895+41.4973+128.936+41.7651+129.071+42.0306C129.161+42.3006+129.347+42.5713+129.572+42.7513C129.977+43.2058+130.56+43.428+131.145+43.428C131.73+43.428+132.313+43.2013+132.718+42.7513C132.943+42.5713+133.129+42.3006+133.219+42.0306C133.354+41.7606+133.395+41.4973+133.395+41.1868C133.395+40.6018+133.168+40.0143+132.718+39.6048C132.538+39.3798+132.268+39.1981+131.998+39.1126C131.593+38.9326+131.142+38.9001+130.715+38.9895ZM221.145+41.178C219.903+41.178+218.895+42.186+218.895+43.428C218.895+44.67+219.903+45.678+221.145+45.678L230.145+45.678C231.387+45.678+232.395+44.67+232.395+43.428C232.395+42.186+231.387+41.178+230.145+41.178L221.145+41.178ZM88.3952+56.928L205.395+56.928L205.395+223.428L88.3952+223.428L88.3952+56.928ZM88.3952+227.928L205.395+227.928L205.395+250.428C205.395+257.871+199.338+263.928+191.895+263.928L101.895+263.928C94.4522+263.928+88.3952+257.871+88.3952+250.428L88.3952+227.928ZM146.895+236.928C141.932+236.928+137.895+240.965+137.895+245.928C137.895+250.892+141.932+254.928+146.895+254.928C151.859+254.928+155.895+250.892+155.895+245.928C155.895+240.965+151.859+236.928+146.895+236.928ZM146.895+241.428C149.375+241.428+151.395+243.444+151.395+245.928C151.395+248.412+149.375+250.428+146.895+250.428C144.416+250.428+142.395+248.412+142.395+245.928C142.395+243.444+144.416+241.428+146.895+241.428Z" opacity="1" fill="url(#LinearGradient)"/>
+<path d="M194.455+183.12C194.455+191.107+187.992+197.586+180.025+197.586L115.105+197.586C107.138+197.586+100.679+191.107+100.679+183.12L100.679+139.736C100.679+131.749+107.138+125.275+115.105+125.275L180.025+125.275C187.992+125.275+194.455+131.749+194.455+139.736L194.455+183.12Z" fill-rule="evenodd" fill="#ff225c" opacity="1"/>
+<path d="M147.847+77.4282C127.927+77.4282+111.782+92.7459+111.782+111.64L111.782+145.847L126.208+145.847L126.208+111.64C126.208+100.303+135.894+91.112+147.847+91.112C159.799+91.112+169.489+100.303+169.489+111.64L169.489+145.847L183.915+145.847L183.915+111.64C183.915+92.7459+167.767+77.4282+147.847+77.4282Z" fill-rule="evenodd" fill="#ff225c" opacity="1"/>
+<path d="M111.123+77.3869L184.292+77.3869L184.292+145.922L111.123+145.922L111.123+77.3869Z" opacity="1" fill="none"/>
+<path d="M100.82+125.414L194.596+125.414L194.596+193.894L100.82+193.894L100.82+125.414Z" opacity="1" fill="none"/>
+<path d="M135.402+157.588L135.402+138.307L181.795+161.264L155.23+161.264L135.402+157.588ZM135.402+168.016L155.175+164.483L181.768+164.483L135.402+187.436L135.402+168.016Z" fill-rule="evenodd" fill="#f9f9f9" opacity="1"/>
+<path d="M135.231+137.45L181.839+137.45L181.839+188.261L135.231+188.261L135.231+137.45Z" opacity="1" fill="none"/>
+<g opacity="1" vectornator:mask="#Mask">
+<use xlink:href="#Mask" fill="#000000" stroke="none"/>
+<clipPath id="ClipPath">
+<use xlink:href="#Mask" fill="none" overflow="visible"/>
+</clipPath>
+<g clip-path="url(#ClipPath)">
+<path d="M113.807+134.167L125.061+134.167L125.061+137.378L113.807+137.378L113.807+134.167Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+</g>
+</g>
+<path d="M119.44+147.636L125.065+147.636L125.065+150.851L119.44+150.851L119.44+147.636Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+<g opacity="1" vectornator:mask="#Mask_2">
+<use xlink:href="#Mask_2" fill="#000000" stroke="none"/>
+<clipPath id="ClipPath_2">
+<use xlink:href="#Mask_2" fill="none" overflow="visible"/>
+</clipPath>
+<g clip-path="url(#ClipPath_2)">
+<path d="M113.807+147.636L116.927+147.636L116.927+150.851L113.807+150.851L113.807+147.636Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+</g>
+</g>
+<g opacity="1" vectornator:mask="#Mask_3">
+<use xlink:href="#Mask_3" fill="#000000" stroke="none"/>
+<clipPath id="ClipPath_3">
+<use xlink:href="#Mask_3" fill="none" overflow="visible"/>
+</clipPath>
+<g clip-path="url(#ClipPath_3)">
+<path d="M113.807+174.892L116.927+174.892L116.927+177.944L113.807+177.944L113.807+174.892Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+</g>
+</g>
+<g opacity="1" vectornator:mask="#Mask_4">
+<use xlink:href="#Mask_4" fill="#000000" stroke="none"/>
+<clipPath id="ClipPath_4">
+<use xlink:href="#Mask_4" fill="none" overflow="visible"/>
+</clipPath>
+<g clip-path="url(#ClipPath_4)">
+<path d="M113.807+161.264L125.061+161.264L125.061+164.479L113.807+164.479L113.807+161.264Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+</g>
+</g>
+<path d="M119.44+174.892L125.065+174.892L125.065+177.944L119.44+177.944L119.44+174.892Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+<g opacity="1" vectornator:mask="#Mask_5">
+<use xlink:href="#Mask_5" fill="#000000" stroke="none"/>
+<clipPath id="ClipPath_5">
+<use xlink:href="#Mask_5" fill="none" overflow="visible"/>
+</clipPath>
+<g clip-path="url(#ClipPath_5)">
+<path d="M113.807+188.357L125.061+188.357L125.061+191.576L113.807+191.576L113.807+188.357Z" fill-rule="evenodd" fill="#ffffff" opacity="1"/>
+</g>
+</g>
+</g>
+</svg>
