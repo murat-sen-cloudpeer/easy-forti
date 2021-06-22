@@ -12,6 +12,10 @@ const defaultConfig: IConfigure = {
   telemetry: true,
   locale: 'tr',
   theme: 'system',
+  urgency: 'normal',
+  notificationSound: false,
+  runAtStartup: true,
+  hostUrl: 'https://imza.io/esig.hub',
 };
 
 /**

@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+/* eslint-disable import/no-extraneous-dependencies */
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { ipcRenderer, IpcRendererEvent } from 'electron';
@@ -17,6 +19,10 @@ interface IRootState {
   logging: boolean;
   telemetry: boolean;
   theme: ThemeType;
+  notificationPriority: PriorityType;
+  notificationSounds: boolean;
+  runAtStartup: boolean;
+  hostUrl: string;
   update: {
     isFetching: IsFetchingType;
     info?: UpdateInfoType;
@@ -30,7 +36,7 @@ class Root extends WindowProvider<{}, IRootState> {
     super(props);
 
     this.state = {
-      activeTab: this.params.defaultTab || 'settings',
+      activeTab: this.params.defaultTab || 'requests',
       keys: {
         list: [],
         isFetching: 'pending',
@@ -41,6 +47,10 @@ class Root extends WindowProvider<{}, IRootState> {
       update: {
         isFetching: 'pending',
       },
+      notificationPriority: 'normal',
+      notificationSounds: false,
+      runAtStartup: true,
+      hostUrl: 'https://imza.io/esig.hub',
     };
 
     this.version = Root.getVersion();
@@ -71,6 +81,20 @@ class Root extends WindowProvider<{}, IRootState> {
     this.themeGet();
     ipcRenderer.on('ipc-theme-changed', this.onThemeChangedListener);
 
+    /**
+     * Notification section.
+     */
+    this.notificationPriorityGet();
+    this.notificationSoundsGet();
+    ipcRenderer.on('ipc-priority-changed', this.onNotificationPriorityChangedListener);
+    ipcRenderer.on('ipc-sounds-changed', this.onNotificationSoundsChangedListener);
+    /**
+     * Application section.
+     */
+    this.startupGet();
+    this.hostUrlGet();
+    ipcRenderer.on('ipc-startup-changed', this.onRunAsStartupChangedListener);
+    ipcRenderer.on('ipc-host-changed', this.onHostUrlChangedListener);
     /**
      * Update section.
      */
@@ -186,6 +210,86 @@ class Root extends WindowProvider<{}, IRootState> {
   };
 
   /**
+   * Notification section
+   */
+
+  private notificationPriorityGet() {
+    const priority = ipcRenderer.sendSync('ipc-priority-get');
+
+    this.setState({
+      notificationPriority: priority,
+    });
+  }
+
+  private notificationSoundsGet() {
+    const sounds = ipcRenderer.sendSync('ipc-sounds-get');
+
+    this.setState({
+      notificationSounds: sounds,
+    });
+  }
+
+  private onNotificationPriorityChangedListener = (_: IpcRendererEvent, priority: PriorityType) => {
+    this.setState({
+      notificationPriority: priority,
+    });
+  };
+
+  private onNotificationSoundsChangedListener = (_: IpcRendererEvent, sounds: boolean) => {
+    this.setState({
+      notificationSounds: sounds,
+    });
+  };
+
+  private handlePriorityChange = (priority: PriorityType) => {
+    ipcRenderer.send('ipc-priority-set', priority);
+  };
+
+  private handleSoundsChange = () => {
+    ipcRenderer.send('ipc-sounds-set');
+  };
+
+  /**
+   * Application section
+   */
+
+  private startupGet() {
+    const startup = ipcRenderer.sendSync('ipc-startup-get');
+
+    this.setState({
+      runAtStartup: startup,
+    });
+  }
+
+  private hostUrlGet() {
+    const host = ipcRenderer.sendSync('ipc-host-get');
+
+    this.setState({
+      hostUrl: host,
+    });
+  }
+
+  private onRunAsStartupChangedListener = (_: IpcRendererEvent, runAtStartup: boolean) => {
+    this.setState({
+      runAtStartup,
+    });
+  };
+
+  private onHostUrlChangedListener = (_: IpcRendererEvent, hostUrl: string) => {
+    this.setState({
+      hostUrl,
+    });
+  };
+
+  private handleRunAtStartupChange = () => {
+    ipcRenderer.send('ipc-startup-set');
+  };
+
+  private handleHostUrlChange = (url: string) => {
+    ipcRenderer.send('ipc-host-set', url);
+  };
+
+  /**
    * Update section.
    */
   private onUpdateChekingListener = () => {
@@ -248,6 +352,10 @@ class Root extends WindowProvider<{}, IRootState> {
       keys,
       logging,
       telemetry,
+      runAtStartup,
+      hostUrl,
+      notificationPriority,
+      notificationSounds,
       theme,
       update,
     } = this.state;
@@ -258,6 +366,18 @@ class Root extends WindowProvider<{}, IRootState> {
           onLoggingOpen: this.handleLoggingOpen,
           onLoggingStatusChange: this.handleLoggingStatusChange,
           status: logging,
+        }}
+        notification={{
+          onPriorityChange: this.handlePriorityChange,
+          onSoundsChange: this.handleSoundsChange,
+          priority: notificationPriority,
+          sounds: notificationSounds,
+        }}
+        application={{
+          onRunAtStartupChange: this.handleRunAtStartupChange,
+          onHostUrlChange: this.handleHostUrlChange,
+          runAtStartup,
+          hostUrl,
         }}
         telemetry={{
           onTelemetryStatusChange: this.handleTelemetryStatusChange,

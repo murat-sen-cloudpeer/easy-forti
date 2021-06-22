@@ -8,10 +8,6 @@ import './styles/tools.css';
 
 interface IToolsProps {
   name: any;
-  update: {
-    isFetching: IsFetchingType;
-    info?: UpdateInfoType;
-  };
 }
 
 export class Tools extends React.Component<IToolsProps> {
@@ -20,31 +16,33 @@ export class Tools extends React.Component<IToolsProps> {
   context!: React.ContextType<typeof IntlContext>;
 
   render() {
+    const { intl } = this.context;
+
     return (
       <div className="container_content">
         <div className="tools-panel">
           <div className="card">
             <VerifyIcon className="icon" />
             <div className="">
-              <h4>Elektronik İmza Doğrulama</h4>
+              <h4>{intl('tools.verify')}</h4>
               <br />
-              <small>Dosya veya dokümanların elektronik imza doğrulamasını yapabilirsiniz.</small>
+              <small>{intl('tools.verify.desc')}</small>
             </div>
           </div>
           <div className="card">
             <ESignIcon className="icon" />
             <div className="">
-              <h4>Elektronk İmzalama</h4>
+              <h4>{intl('tools.esign')}</h4>
               <br />
-              <small>İstediğiniz bir dosya veya dokümanı elektronik olarak imzalayabilirsiniz.</small>
+              <small>{intl('tools.esign.desc')}</small>
             </div>
           </div>
           <div className="card">
             <MobilePeer className="icon" />
             <div className="">
-              <h4>imza.io Mobil Eşleştirme</h4>
+              <h4>{intl('tools.mobile')}</h4>
               <br />
-              <small>imza.io Mobil uygulaması ile bilgisayarınıza gelen imza taleplerini görebilir, uzaktan imza atabilirsiniz.</small>
+              <small>{intl('tools.mobile.desc')}</small>
             </div>
           </div>
         </div>

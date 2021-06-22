@@ -34,6 +34,18 @@ export interface IContainerProps {
     value: ThemeType;
     onThemeChange: (theme: ThemeType) => void;
   };
+  notification: {
+    priority: PriorityType;
+    sounds: boolean;
+    onPriorityChange: (priority: PriorityType) => void;
+    onSoundsChange: () => void;
+  };
+  application: {
+    onRunAtStartupChange: () => void;
+    onHostUrlChange: (url: string) => void;
+    runAtStartup: boolean;
+    hostUrl: string;
+  };
   update: {
     isFetching: IsFetchingType;
     info?: UpdateInfoType;
@@ -78,6 +90,8 @@ export default class Container extends React.Component<IContainerProps, IContain
       theme,
       update,
       tab,
+      notification,
+      application,
     } = this.props;
     const { intl } = this.context;
 
@@ -95,14 +109,15 @@ export default class Container extends React.Component<IContainerProps, IContain
             align="left"
             onChange={this.handleChangeTab}
             className="tabs"
-            color="grey_4"
-            colorOn="black"
+            color="black"
+            colorOn="primary"
           >
             <Tab
               value="requests"
               className="tab b3"
             >
               {intl('requests')}
+              {update.info ? this.renderNotificationBadge() : null}
             </Tab>
             <Tab
               value="settings"
@@ -115,7 +130,6 @@ export default class Container extends React.Component<IContainerProps, IContain
               className="tab b3"
             >
               {intl('tools')}
-              {update.info ? this.renderNotificationBadge() : null}
             </Tab>
             <Tab
               value="about"
@@ -136,15 +150,17 @@ export default class Container extends React.Component<IContainerProps, IContain
               language={language}
               logging={logging}
               telemetry={telemetry}
+              notification={notification}
+              application={application}
               theme={theme}
             />
             <Tools
               name="tools"
-              update={update}
             />
             <About
               name="about"
               version={version}
+              update={update}
             />
           </SegueHandler>
         </div>

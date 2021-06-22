@@ -1,3 +1,25 @@
+:root {
+  --secondary: 108, 117, 125;
+  --primary: 255, 34, 92;
+  --grey_1: 250, 249, 249;
+  --grey_2: 225, 228, 230;
+  --grey_4: 182, 195, 204;
+  --black: 64, 72, 79;
+  --white: 255, 255, 255;
+  --attention: 247, 168, 49;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --grey_1: 44, 52, 59;
+    --grey_2: 104, 112, 119;
+    --grey_4: 114, 122, 129;
+    --black: 255, 255, 255;
+    --white: 64, 72, 79;
+    --dark_grey: 114, 122, 129;
+  }
+}
+
 .host {
   height: 100%;
   padding: 10px 0;
@@ -9,10 +31,11 @@
 
 .tab {
   padding: 0;
-  text-transform: uppercase;
   font-weight: 600 !important;
   line-height: 48px;
   position: relative;
+  font-size: medium;
+  text-transform: capitalize;
 }
 
 .tab + .tab {

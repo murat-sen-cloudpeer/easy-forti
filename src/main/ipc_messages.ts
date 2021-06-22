@@ -88,16 +88,97 @@ const initEvents = () => {
     .on('ipc-theme-get', (event: IpcMainEvent) => {
       event.returnValue = nativeTheme.themeSource;
     })
-    .on('ipc-theme-set', (event: IpcMainEvent, theme: ('system' | 'dark' | 'light')) => {
+    .on(
+      'ipc-theme-set',
+      (event: IpcMainEvent, theme: 'system' | 'dark' | 'light') => {
+        const config = getConfig();
+
+        setConfig({
+          ...config,
+          theme,
+        });
+
+        nativeTheme.themeSource = theme;
+        event.sender.send('ipc-theme-changed', theme);
+      },
+    )
+    .on('ipc-theme-get', (event: IpcMainEvent) => {
+      event.returnValue = nativeTheme.themeSource;
+    })
+    .on('ipc-priority-set', (event: IpcMainEvent, priority: PriorityType) => {
       const config = getConfig();
 
       setConfig({
         ...config,
-        theme,
+        urgency: priority,
       });
 
-      nativeTheme.themeSource = theme;
-      event.sender.send('ipc-theme-changed', theme);
+      logger.info('notification', 'Notification priority changed', {
+        urgency: priority,
+      });
+
+      // nativeTheme.themeSource = theme;
+      event.sender.send('ipc-priority-changed', priority);
+    })
+    .on('ipc-sounds-set', (event: IpcMainEvent) => {
+      const config = getConfig();
+      const value = !config.notificationSound;
+
+      setConfig({
+        ...config,
+        notificationSound: value,
+      });
+
+      logger.info('notification', 'Notification settings changed', {
+        notificationSound: value,
+      });
+
+      // nativeTheme.themeSource = theme;
+      event.sender.send('ipc-sounds-changed', value);
+    })
+    .on('ipc-priority-get', (event: IpcMainEvent) => {
+      const config = getConfig();
+      event.returnValue = config.urgency;
+    })
+    .on('ipc-sounds-get', (event: IpcMainEvent) => {
+      const config = getConfig();
+      event.returnValue = config.notificationSound;
+    })
+    .on('ipc-startup-set', (event: IpcMainEvent) => {
+      const config = getConfig();
+      const value = !config.runAtStartup;
+      setConfig({
+        ...config,
+        runAtStartup: value,
+      });
+
+      logger.info('application', 'Application startup settings changed', {
+        runAtStartup: value,
+      });
+
+      event.sender.send('ipc-startup-changed', value);
+    })
+    .on('ipc-host-set', (event: IpcMainEvent, hostUrl: string) => {
+      const config = getConfig();
+
+      setConfig({
+        ...config,
+        hostUrl,
+      });
+
+      logger.info('application', 'Application host url changed', {
+        hostUrl,
+      });
+
+      event.sender.send('ipc-host-changed', hostUrl);
+    })
+    .on('ipc-startup-get', (event: IpcMainEvent) => {
+      const config = getConfig();
+      event.returnValue = config.runAtStartup;
+    })
+    .on('ipc-host-get', (event: IpcMainEvent) => {
+      const config = getConfig();
+      event.returnValue = config.hostUrl;
     })
     .on('ipc-update-check', () => {
       autoUpdater.checkForUpdates();

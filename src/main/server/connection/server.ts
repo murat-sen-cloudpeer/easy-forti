@@ -201,7 +201,7 @@ export class Server extends core.EventLogEmitter {
     this.session.cards = cardSessions;
   }
 
-  public connect(address: string) {
+  public async connect(address: string): Promise<Server> {
     this.url = address;
 
     this.connection = new HubConnectionBuilder()
@@ -209,7 +209,7 @@ export class Server extends core.EventLogEmitter {
       .configureLogging(LogLevel.Trace)
       .build();
 
-    this.connection.onclose((error) => {
+    this.connection.onclose((error: any) => {
       this.pendingSession = this.session;
       this.session.disconnected = new Date();
 
@@ -219,10 +219,10 @@ export class Server extends core.EventLogEmitter {
       this.start();
     });
 
-    this.connection.on('RequestSigningCert', (messageId: string, identityNo: string) => this.requestSigningCert(messageId, identityNo));
-    this.connection.on('RequestSignature', (messageId: string, identityNo: string, signatureRequest: SignatureRequest) => this.requestSignature(messageId, identityNo, signatureRequest));
-    this.connection.on('Notify', (messageId:string, notificationInfo: NotificationInfo) => this.notify(messageId, notificationInfo));
-    this.start();
+    this.connection.on('RequestSigningCert', async (messageId: string, identityNo: string) => this.requestSigningCert(messageId, identityNo));
+    this.connection.on('RequestSignature', async (messageId: string, identityNo: string, signatureRequest: SignatureRequest) => this.requestSignature(messageId, identityNo, signatureRequest));
+    this.connection.on('Notify', async (messageId:string, notificationInfo: NotificationInfo) => this.notify(messageId, notificationInfo));
+    await this.start();
 
     return this;
   }
@@ -239,8 +239,8 @@ export class Server extends core.EventLogEmitter {
     this.emit('request-signing-cert', {
       messageId,
       identityNo,
-      resolve: (messageId, signCertificates) => this.replySigningCert(messageId, signCertificates),
-      error: (messageId, error) => this.replyError(messageId, error),
+      resolve: async (messageId, signCertificates) => this.replySigningCert(messageId, signCertificates),
+      error: async (messageId, error) => this.replyError(messageId, error),
     });
   }
 
@@ -251,9 +251,9 @@ export class Server extends core.EventLogEmitter {
       identityNo,
       signatureRequest,
       resolve: async (messageId, signedData) => this.replySignature(messageId, signedData),
-      reject: (messageId, reason) => this.replyReject(messageId, reason),
-      cancel: (messageId) => this.replyCancel(messageId),
-      error: (messageId, error) => this.replyError(messageId, error),
+      reject: async (messageId, reason) => this.replyReject(messageId, reason),
+      cancel: async (messageId) => this.replyCancel(messageId),
+      error: async (messageId, error) => this.replyError(messageId, error),
     };
 
     this.session.cards.forEach((c) => {

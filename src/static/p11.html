@@ -145,50 +145,44 @@
     .container_content {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      align-items: center;
+      justify-content: flex-start;
       width: 100%;
       padding: 10px;
       gap: 20px;
     }
 
-    .tools-panel {
+    .settings-panel {
       display: flex;
       flex-direction: column;
-      width: 70%;
-      gap: 50px;
+      width: 100%;
+      gap: 10px;
     }
 
-      .tools-panel .card {
+      .settings-panel .card {
         border: 1px solid rgb(var(--grey_2));
         border-radius: 2px;
         padding: 10px;
         display: flex;
-        flex-direction: row;
-        margin-top: 15px;
-        font-size: medium;
-        align-items: center;
-        cursor: pointer;
+        flex-direction: column;
+        gap: 5px;
+        font-size: small;
       }
-        .tools-panel .card:hover {
-            background: linear-gradient(130deg, rgb(var(--white)) 0%, rgb(var(--white)) 100%);
-            box-shadow: none;
-            color: rgb(var(--primary));
-            transition: .3s all ease-in-out;
-            box-shadow: rgba(var(--black), 0.1) 0px 4px 6px -1px, rgba(var(--black), 0.06) 0px 2px 4px -1px;
-        }
 
-        .tools-panel .card small {
-          color: rgb(var(--secondary));
-          font-weight: 100;
-          font-size: small;
-          width: fit-content;
-        }
+      .settings-panel .card small {
+        color: rgb(var(--black));
+        font-weight: lighter;
+        font-size: smaller;
+        margin-top: -17px;
+        background-color: rgb(var(--white));
+        width: fit-content;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
 
-        .tools-panel .card .icon {
-          width: 5em;
-          height: 5em;
-        }
+      .settings-panel .card .issuer {
+        font-size: xx-small;
+        font-stretch: narrower;
+      }
 
     .button {
       padding: 0 30px;
@@ -201,18 +195,45 @@
     <section>
       <div class="container_body">
         <div class="container_content sign-panel">
-            <div class="tools-panel">
+            <div class="settings-panel">
                 <div class="card">
-                  <img class="icon" src="../static/icons/verify.svg" alt="Doğrula" />
-                  <div class=""><h4>Elektronik İmza Doğrulama</h4><br/><small>Dosya veya dokümanların elektronik imza doğrulamasını yapabilirsiniz.</small></div>
+                  <small>Dil</small>
+                  <select>
+                    <option>Türkçe</option>
+                    <option>İngilizce</option>
+                  </select>
                 </div>
                 <div class="card">
-                  <img class="icon" src="../static/icons/esign.svg" alt="İmzala" />
-                  <div class=""><h4>Elektronk İmzalama</h4><br/><small>İstediğiniz bir dosya veya dokümanı elektronik olarak imzalayabilirsiniz.</small></div>
+                  <small>Tema</small>
+                  <select>
+                    <option>Sistem ayarını kullan</option>
+                    <option>Açık</option>
+                    <option>Koyu</option>
+                  </select>
                 </div>
                 <div class="card">
-                  <img class="icon" src="../static/icons/mobile-peer.svg" alt="Eşleştir" />
-                  <div class=""><h4>imza.io Mobil Eşleştirme</h4><br/><small>imza.io Mobil uygulaması ile bilgisayarınıza gelen imza taleplerini görebilir, uzaktan imza atabilirsiniz.</small></div>
+                  <small>Bildirimler</small>
+                  <label for="priority" >
+                    <span>Öncelik</span>
+                    <input name="priority" type="checkbox" id="priority" checked />
+                  </label>
+                  <label for="notifySound">
+                    <span>Bildirim Sesleri</span>
+                    <input name="notifySound" type="checkbox" id="notifySound" checked />
+                  </label>
+                </div>
+                <div class="card">
+                  <small>Uygulama Başlatma</small>
+                  <input type="checkbox" id="Sistem açıldığında otomatik başlasın" />
+                </div>
+                <div class="card">
+                  <small>Kullanım ve Hata Verileri</small>
+                  <input type="checkbox" id="Telemetri" />
+                  <input type="checkbox" id="Logları Aç" />
+                </div>
+                <div class="card">
+                  <small>Sunucu Adresi</small>
+                  <input type="url" id="host" />
                 </div>
             </div>
         </div>

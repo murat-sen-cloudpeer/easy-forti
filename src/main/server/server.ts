@@ -21,7 +21,7 @@ export interface IServerOptions extends ServerOptions {
   /**
    * Disables using of PCSC. No emit CardReader and Provider token events
    */
-  disablePCSC?: boolean;
+  disablePCSC: boolean;
 }
 
 /**
@@ -61,12 +61,12 @@ export class EasyHub extends core.EventLogEmitter {
       .on('connect', (e) => {
         tray.setOnline('connected');
       })
-      .on('request-signing-cert', (request) => {
+      .on('request-signing-cert', async (request) => {
         try {
           const signCerts = this.provider.getSigningCertificates(request.identityNo);
-          request.resolve(request.messageId, signCerts);
+          await request.resolve(request.messageId, signCerts);
         } catch (err) {
-          request.error(request.messageId, err);
+          await request.error(request.messageId, err);
         }
       })
       .on('request-signature', (request) => {
@@ -126,8 +126,9 @@ export class EasyHub extends core.EventLogEmitter {
       this.cardReader = new CardReaderService(this.server)
         .on('ready', () => {
           this.provider.open();
-        })
-        .on('info', (level, source, message, data) => {
+        });
+      /*
+        .on('info', (level: any, source: any, message: any, data: any) => {
           logger.info('server', 'card-reader info', {
             level, source, message, data,
           });
@@ -145,6 +146,7 @@ export class EasyHub extends core.EventLogEmitter {
           logger.error('server', 'card-reader error', e);
           // this.emit('error', e);
         });
+        */
     } else {
       // Disable PCSC for provider too
       options.config.disablePCSC = true;
@@ -198,12 +200,10 @@ export class EasyHub extends core.EventLogEmitter {
     return this;
   }
 
-  public start(address: string) {
-    this.server.connect(address);
+  public async start(address: string) {
+    await this.server.connect(address);
 
-    if (this.cardReader) {
-      this.cardReader.start();
-    }
+    this.cardReader?.start();
 
     return this;
   }

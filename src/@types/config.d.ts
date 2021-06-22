@@ -30,6 +30,10 @@ interface IConfigure {
   userId: string;
   telemetry?: boolean;
   theme: ('system' | 'dark' | 'light');
+  urgency: ('trivial' | 'normal' | 'important');
+  notificationSound?: boolean;
+  runAtStartup?: boolean;
+  hostUrl: string;
 }
 
 declare module 'sudo-prompt' {

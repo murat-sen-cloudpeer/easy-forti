@@ -74,4 +74,5 @@
       display: flex;
       justify-self: flex-end;
       margin:10px;
+      font-size: smaller;
     }

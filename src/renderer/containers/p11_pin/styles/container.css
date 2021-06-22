@@ -106,6 +106,13 @@
           color: rgb(var(--black));
         }
 
+        .signature-panel .keypad button:hover {
+            transition: .1s all ease-in-out;
+            -webkit-filter: drop-shadow( 1px 1px 1px rgba(255, 255, 0, 0.2));
+            filter: drop-shadow( 1px 1px 1px rgba(255,255,0, .2));
+            color: rgb(var(--primary));
+        }
+
       .signature-panel .password {
         font-family: monospace;
         text-align: center;

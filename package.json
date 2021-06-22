@@ -1,7 +1,7 @@
 {
   "name": "easy.imza.io",
   "productName": "imza.io EASY",
-  "version": "1.0.0",
+  "version": "1.0.48",
   "description": "imza.io enables any applications to use smart cards, local certificate stores and do certificate enrollment",
   "main": "out/main.js",
   "scripts": {
@@ -23,7 +23,7 @@
     "name": "Lyfe Dijital Yazılım Ticaret A.Ş.",
     "email": "info@imza.io"
   },
-  "license": "AGPL",
+  "license": "ARR",
   "devDependencies": {
     "@svgr/cli": "^5.5.0",
     "@types/asn1js": "0.0.1",
@@ -75,7 +75,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
     "@fontsource/montserrat": "^4.4.5",
-    "@microsoft/signalr": "^5.0.6",
+    "@microsoft/signalr": "^5.0.7",
     "@peculiar/asn1-schema": "^2.0.26",
     "@peculiar/asn1-x509": "^2.0.26",
     "@peculiar/webcrypto": "1.0.22",

@@ -14,3 +14,5 @@ type UpdateInfoType = {
 };
 
 type TabType = 'sites' | 'settings' | 'updates' | 'about';
+
+type PriorityType = 'trivial' | 'normal' | 'important';

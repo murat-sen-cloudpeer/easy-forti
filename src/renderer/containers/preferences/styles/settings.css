@@ -1,0 +1,104 @@
+
+    .container_body {
+      display: flex;
+      height: calc(100% - 40px - 10px);
+      margin-bottom: 10px;
+      justify-content: center;
+    }
+
+    .container_content {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      width: 100%;
+      padding: 10px;
+      gap: 20px;
+    }
+
+    .settings-panel {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-shrink: 0;
+      justify-content: flex-start;
+      width: 100%;
+      gap: 15px;
+    }
+
+      .settings-panel .row {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 15px;
+      }
+
+      .settings-panel .card label {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-grow: 1;
+        flex: 1;
+      }
+
+      .settings-panel .card {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        font-size: small;
+        flex: 1;
+      }
+
+      .settings-panel .box {
+        border: 1px solid rgb(var(--grey_2));
+        border-radius: 2px;
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+      }
+
+      .settings-panel .box small {
+        font-weight: lighter;
+        font-size: x-small;
+        margin-top: -7px;
+        margin-left: 5px;
+        padding-left: 5px;
+        padding-right: 5px;
+        background-color: rgb(var(--grey_1));
+        width: fit-content;
+        position: absolute;
+        display: block;
+      }
+
+      .settings-panel .card .label {
+        flex: 2;
+      }
+
+      .settings-panel .card .label.m {
+        margin-left: 20px;
+      }
+
+      .settings-panel .card .input {
+        flex: 5;
+      }
+
+      .settings-panel .card .switch {
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+
+      .settings-panel .card p {
+        flex: 1;
+        font-weight: 100;
+        font-size: xx-small;
+        color: rgb(var(--secondary));
+      }
+
+    .button {
+      text-align: right;
+      padding-left: 10px;
+      padding-right: 10px;
+      flex: 1;
+    }

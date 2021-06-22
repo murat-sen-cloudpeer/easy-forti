@@ -122,7 +122,7 @@ export class Application {
       /**
        * Init application auto updater.
        */
-      this.initAutoUpdater();
+      // this.initAutoUpdater();
     } catch (error) {
       logger.error('application', 'On ready error', {
         error: error.message,

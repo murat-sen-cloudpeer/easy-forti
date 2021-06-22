@@ -46,51 +46,7 @@ export class CardWatcher extends core.EventLogEmitter {
     }
     this.config = new CardConfig(options);
     this.watcher = new PCSCWatcher();
-    this.watcher
-      .on('info', (level, source, message, data) => {
-        this.emit('info', level, source, message, data);
-      })
-      .on('error', (err) => {
-        this.emit('error', err);
-      })
-      .on('insert', (e) => {
-        try {
-          if (!e.atr) {
-            this.log('warn', 'Cannot check token because it uses an empty ATR', {
-              reader: e.reader.name,
-            });
-
-            return;
-          }
-
-          const card = this.getCardObject(e);
-          if (card) {
-            card.reader = e.reader.name;
-            this.add(card);
-            this.emit('insert', card);
-          } else {
-            this.emit('new', {
-              reader: e.reader.name,
-              atr: e.atr,
-            });
-          }
-        } catch (error) {
-          this.emit('error', error);
-        }
-      })
-      .on('remove', (sc) => {
-        try {
-          const removed = this.cards.filter((o) => o.reader === sc.reader.name && o.atr && sc.atr && o.atr.equals(sc.atr));
-          if (removed.length) {
-            this.cards = this.cards.filter((o) => !removed.includes(o));
-            for (const card of removed) {
-              this.emit('remove', card);
-            }
-          }
-        } catch (error) {
-          this.emit('error', error);
-        }
-      });
+    this.bind();
   }
 
   public on(event: 'info', cb: core.LogHandler): this;
@@ -139,6 +95,62 @@ export class CardWatcher extends core.EventLogEmitter {
     this.watcher.stop();
   }
 
+  public restart() {
+    try { this.watcher.stop(); } finally {
+      this.watcher = new PCSCWatcher();
+      this.bind();
+      this.watcher.start();
+    }
+  }
+
+  private bind() {
+    this.watcher
+      .on('info', (level, source, message, data) => {
+        this.emit('info', level, source, message, data);
+      })
+      .on('error', (err) => {
+        this.emit('error', err);
+      })
+      .on('insert', (e) => {
+        try {
+          if (!e.atr) {
+            this.log('warn', 'Cannot check token because it uses an empty ATR', {
+              reader: e.reader.name,
+            });
+
+            return;
+          }
+
+          const card = this.getCardObject(e);
+          if (card) {
+            card.reader = e.reader.name;
+            this.add(card);
+            this.emit('insert', card);
+          } else {
+            this.emit('new', {
+              reader: e.reader.name,
+              atr: e.atr,
+            });
+          }
+        } catch (error) {
+          this.emit('error', error);
+        }
+      })
+      .on('remove', (sc) => {
+        try {
+          const removed = this.cards.filter((o) => o.reader === sc.reader.name && o.atr && sc.atr && o.atr.equals(sc.atr));
+          if (removed.length) {
+            this.cards = this.cards.filter((o) => !removed.includes(o));
+            for (const card of removed) {
+              this.emit('remove', card);
+            }
+          }
+        } catch (error) {
+          this.emit('error', error);
+        }
+      });
+  }
+
   protected add(card: Card) {
     if (!this.cards.some((item) => item.atr === card.atr)) {
       this.cards.push(card);
@@ -175,6 +187,7 @@ export class CardWatcher extends core.EventLogEmitter {
             };
           }
         }
+        opensc.close();
       } catch (error) {
         this.emit('error', error);
       }
