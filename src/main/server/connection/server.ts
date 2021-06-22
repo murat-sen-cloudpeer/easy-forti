@@ -145,6 +145,8 @@ export class Server extends core.EventLogEmitter {
 
   protected connection!: HubConnection;
 
+  private stopped: boolean;
+
   private url!: string;
 
   private pendingSession: connection.Session | null = null;
@@ -155,6 +157,7 @@ export class Server extends core.EventLogEmitter {
     super();
 
     this.options = options;
+    this.stopped = false;
   }
 
   public on(event: 'request-signature', listener: (request: RequestSignature) => void): this;
@@ -216,7 +219,9 @@ export class Server extends core.EventLogEmitter {
       logger.warn('connection', 'connection closed', error);
       this.emit('disconnect', error);
 
-      this.start();
+      if (!this.stopped) {
+        this.start();
+      }
     });
 
     this.connection.on('RequestSigningCert', async (messageId: string, identityNo: string) => this.requestSigningCert(messageId, identityNo));
@@ -396,6 +401,9 @@ export class Server extends core.EventLogEmitter {
   }
 
   public close(_callback?: () => void) {
+    this.stopped = true;
+    this.connection.stop();
+
     return this;
   }
 }

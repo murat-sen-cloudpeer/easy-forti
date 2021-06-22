@@ -4,7 +4,6 @@
   "error": "Hata",
   "question": "Soru",
   "warning": "Uyarı",
-  "about.app": "imza.io Hakkında",
   "exit": "Çıkış",
   "i_understand": "Anladım",
 
@@ -42,6 +41,7 @@
   "remove": "Kaldır",
 
   "settings": "Ayarlar",
+  "settings.app": "Uygulama Ayarları",
   "settings.language": "Dil",
   "settings.theme": "Tema",
   "settings.theme.system": "Sistem ayarını kullan",
@@ -62,11 +62,18 @@
   "settings.application.host": "Sunucu adresi",
 
   "about": "Hakkında",
+  "about.app": "imza.io Hakkında",
   "about.thanks": "Bu uygulama açık kaynaklı yazılımlar sayesinde geliştirilmiştir.",
   "about.copyright": "Her hakkı saklıdır.",
   "about.termsOfUse": "Kullanım Koşulları",
   "about.privacyStatement": "Gizlilik Bildirimi",
   "about.servicesAgreement": "Hizmet Sözleşmesi",
+  "about.url.termsOfUse": "https://imza.io",
+  "about.url.privacyStatement": "https://imza.io",
+  "about.url.servicesAgreement": "https://imza.io",
+  "about.license.name": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License",
+  "about.license.url": "https://creativecommons.org/licenses/by-nc-nd/4.0/deed.tr",
+  "about.license.label": "Lisans ve Hükümler",
 
   "tools": "Araçlar",
   "tools.verify": "Elektronik İmza Doğrulama",
@@ -76,7 +83,10 @@
   "tools.mobile": "imza.io Mobil Eşleştirme",
   "tools.mobile.desc": "imza.io Mobil uygulaması ile bilgisayarınıza gelen imza taleplerini görebilir, uzaktan imza atabilirsiniz.",
 
-
+  "requests": "İmza Talepleri",
+  "requests.pending": "%1 imza talebiniz var",
+  "requests.expiring": "%1 içinde imza bekleyen talebiniz var",
+  "requests.empty": "Bekleyen imza talebiniz yok",
 
   "updates": "Güncellemeler",
   "updates.check": "Güncellemeleri Kontrol Et...",
@@ -88,10 +98,7 @@
   "preferences": "Tercihler...",
   "quit": "Çıkış",
 
-  "requests": "İmza Talepleri",
-  "requests.pending": "%1 imza talebiniz var",
-  "requests.expiring": "%1 içinde imza bekleyen talebiniz var",
-  "requests.empty": "(Bekleyen talebiniz yok)",
+
 
   "certificates.empty": "(Sertifika bulunamadı)"
 

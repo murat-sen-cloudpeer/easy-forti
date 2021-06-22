@@ -23,7 +23,7 @@
     "name": "Lyfe Dijital Yazılım Ticaret A.Ş.",
     "email": "info@imza.io"
   },
-  "license": "ARR",
+  "license": "CC BY-NC-ND",
   "devDependencies": {
     "@svgr/cli": "^5.5.0",
     "@types/asn1js": "0.0.1",

@@ -2,7 +2,7 @@
 import * as React from 'react';
 import VerifyIcon from './svg/verify';
 import ESignIcon from './svg/esign';
-import MobilePeer from './svg/mobile-peer';
+import MobilePeer from './svg/mobile_peer';
 import { IntlContext } from '../../components/intl';
 import './styles/tools.css';
 

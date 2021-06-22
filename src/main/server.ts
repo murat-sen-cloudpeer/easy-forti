@@ -253,7 +253,11 @@ export class Server {
         ipcMain.emit('ipc-identity-changed');
       });
 
-    this.server.start('https://imza.io/esig.hub/ws');
+    this.server.start(`${this.config.hostUrl}/ws`);
+  }
+
+  public stop() {
+    this.server.close();
   }
 
   private async prepareConfig() {

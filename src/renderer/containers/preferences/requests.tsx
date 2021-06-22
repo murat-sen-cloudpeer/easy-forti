@@ -8,8 +8,8 @@ import {
 } from 'lib-react-components';
 import classnames from 'classnames';
 import { IntlContext } from '../../components/intl';
-
-const s = require('./styles/Requests.sass');
+import EmptyIcon from './svg/empty_task';
+import './styles/requests.css';
 
 interface IRequestsProps {
   name: any;
@@ -63,6 +63,7 @@ export class Requests extends React.Component<IRequestsProps, IRequestsState> {
     };
   }
 
+  /*
   onChangeSearch = (e: any) => {
     this.setState({
       search: e.target.value.toLowerCase(),
@@ -190,11 +191,33 @@ export class Requests extends React.Component<IRequestsProps, IRequestsState> {
       </ul>
     );
   }
+*/
+
+  renderEmpty() {
+    const { intl } = this.context;
+
+    return (
+      <div className="container_content">
+        <div className="requests-panel">
+          <div className="empty">
+            <div className="empty-icon">
+              <EmptyIcon />
+            </div>
+            <div className="empty-message">
+              <h4>{intl('requests.empty')}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   render() {
     const { keys } = this.props;
     const { intl } = this.context;
 
+    return this.renderEmpty();
+    /*
     return (
       <>
         <TextField
@@ -218,5 +241,6 @@ export class Requests extends React.Component<IRequestsProps, IRequestsState> {
         </div>
       </>
     );
+    */
   }
 }

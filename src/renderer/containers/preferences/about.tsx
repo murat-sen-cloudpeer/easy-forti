@@ -33,11 +33,24 @@ export class About extends React.Component<IAboutProps> {
           <div className="footer">
             <div className="copyright">{`© 2021 Lyfe Dijital Yazılım Ticaret A.Ş. ${intl('about.copyright')}`}</div>
             <div className="links">
-              <a href="https://imza.io">{intl('about.termsOfUse')}</a>
-              &nbsp;-&nbsp;
-              <a href="https://imza.io">{intl('about.privacyStatement')}</a>
-              &nbsp;-&nbsp;
-              <a href="https://imza.io">{intl('about.servicesAgreement')}</a>
+              <a href={intl('about.url.termsOfUse')}>{intl('about.termsOfUse')}</a>
+              <span style={{ color: 'rgb(val(--black))' }}>&nbsp;&nbsp;&#8226;&nbsp;&nbsp;</span>
+              <a href={intl('about.url.privacyStatement')}>{intl('about.privacyStatement')}</a>
+              <span style={{ color: 'rgb(val(--black))' }}>&nbsp;&nbsp;&#8226;&nbsp;&nbsp;</span>
+              <a href={intl('about.url.servicesAgreement')}>{intl('about.servicesAgreement')}</a>
+            </div>
+            <div className="license">
+              <span>{intl('about.license.label')}</span>
+              <br />
+              <a rel="license" href={intl('about.license.url')}>
+                <img
+                  alt="Creative Commons License"
+                  style={{ borderWidth: 0 }}
+                  src="https://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png"
+                />
+              </a>
+              <br />
+              <a rel="license" style={{ textAlign: 'center' }} href={intl('about.license.url')}>{intl('about.license.name')}</a>
             </div>
           </div>
         </div>

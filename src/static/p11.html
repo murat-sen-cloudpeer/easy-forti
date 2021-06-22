@@ -151,14 +151,30 @@
       gap: 20px;
     }
 
-    .settings-panel {
+    .requests-panel {
       display: flex;
       flex-direction: column;
       width: 100%;
       gap: 10px;
     }
 
-      .settings-panel .card {
+      .requests-panel .empty {
+        margin:auto;
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .requests-panel .empty-icon {
+        margin: 50px;
+      }
+
+      .requests-panel .empty-message {
+        font-size: medium;
+        color: #9b9b9b;
+      }
+
+      .requests-panel .card {
         border: 1px solid rgb(var(--grey_2));
         border-radius: 2px;
         padding: 10px;
@@ -168,7 +184,7 @@
         font-size: small;
       }
 
-      .settings-panel .card small {
+      .requests-panel .card small {
         color: rgb(var(--black));
         font-weight: lighter;
         font-size: smaller;
@@ -179,7 +195,7 @@
         padding-right: 5px;
       }
 
-      .settings-panel .card .issuer {
+      .requests-panel .card .issuer {
         font-size: xx-small;
         font-stretch: narrower;
       }
@@ -195,46 +211,16 @@
     <section>
       <div class="container_body">
         <div class="container_content sign-panel">
-            <div class="settings-panel">
-                <div class="card">
-                  <small>Dil</small>
-                  <select>
-                    <option>Türkçe</option>
-                    <option>İngilizce</option>
-                  </select>
+            <div class="requests-panel">
+            <div class="empty">
+                <div class="empty-icon">
+                  <img src="../static/icons/empty-request.svg" alt="İmza Talebi Bulunamadı" />
                 </div>
-                <div class="card">
-                  <small>Tema</small>
-                  <select>
-                    <option>Sistem ayarını kullan</option>
-                    <option>Açık</option>
-                    <option>Koyu</option>
-                  </select>
+                <div class="empty-message">
+                  <p>Bekleyen imza talebiniz bulunmamaktadır.</p>
                 </div>
-                <div class="card">
-                  <small>Bildirimler</small>
-                  <label for="priority" >
-                    <span>Öncelik</span>
-                    <input name="priority" type="checkbox" id="priority" checked />
-                  </label>
-                  <label for="notifySound">
-                    <span>Bildirim Sesleri</span>
-                    <input name="notifySound" type="checkbox" id="notifySound" checked />
-                  </label>
-                </div>
-                <div class="card">
-                  <small>Uygulama Başlatma</small>
-                  <input type="checkbox" id="Sistem açıldığında otomatik başlasın" />
-                </div>
-                <div class="card">
-                  <small>Kullanım ve Hata Verileri</small>
-                  <input type="checkbox" id="Telemetri" />
-                  <input type="checkbox" id="Logları Aç" />
-                </div>
-                <div class="card">
-                  <small>Sunucu Adresi</small>
-                  <input type="url" id="host" />
-                </div>
+            </div>
+
             </div>
         </div>
       </div>

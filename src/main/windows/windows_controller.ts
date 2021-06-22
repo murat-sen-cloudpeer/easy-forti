@@ -85,7 +85,7 @@ class WindowsController {
     });
   }
 
-  showPreferencesWindow(defaultTab?: ('about' | 'updates' | 'settings')) {
+  showPreferencesWindow(defaultTab?: TabType) {
     return new Promise<void>((resolve) => {
       const params = {
         defaultTab,

@@ -251,7 +251,9 @@ export class LocalProvider extends core.EventLogEmitter {
   }
 
   public stop() {
-    throw new WebCryptoLocalError(WebCryptoLocalError.CODE.METHOD_NOT_IMPLEMENTED);
+    this.crypto.removeAllListeners();
+    this.crypto.clear();
+    this.cards?.stop();
   }
 
   public async getCrypto(cryptoID: string) {

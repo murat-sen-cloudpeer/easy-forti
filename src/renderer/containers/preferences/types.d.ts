@@ -13,6 +13,6 @@ type UpdateInfoType = {
   createdAt: number;
 };
 
-type TabType = 'sites' | 'settings' | 'updates' | 'about';
+type TabType = 'requests' | 'settings' | 'tools' | 'about';
 
 type PriorityType = 'trivial' | 'normal' | 'important';

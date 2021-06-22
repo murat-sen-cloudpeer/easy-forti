@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-extraneous-dependencies */
-import { shell, MenuItemConstructorOptions, nativeImage } from 'electron';
+import { MenuItemConstructorOptions, nativeImage } from 'electron';
 import * as path from 'path';
-import { ICON_DIR, TOOLS_LINK } from '../constants';
+import { ICON_DIR } from '../constants';
 import { windowsController } from '../windows';
 import { l10n } from '../l10n';
 import { CardSession } from '../../@types/pcsclite';
@@ -21,7 +21,7 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     label: l10n.get('certificates.empty'),
     enabled: false,
     click: () => {
-      windowsController.showPreferencesWindow('settings');
+
     },
   },
   {
@@ -31,14 +31,14 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     label: l10n.get('requests.empty'),
     enabled: false,
     click: () => {
-      windowsController.showPreferencesWindow('settings');
+      windowsController.showPreferencesWindow('requests');
     },
   },
   {
     type: 'separator',
   },
   {
-    label: l10n.get('preferences'),
+    label: l10n.get('settings.app'),
     click: () => {
       windowsController.showPreferencesWindow('settings');
     },
@@ -46,7 +46,7 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
   {
     label: l10n.get('tools'),
     click: () => {
-      shell.openExternal(TOOLS_LINK);
+      windowsController.showPreferencesWindow('tools');
     },
   },
   {
@@ -93,7 +93,7 @@ export const getMenuItems = (
   });
 
   result.push({
-    label: l10n.get('preferences'),
+    label: l10n.get('settings.app'),
     click: () => {
       windowsController.showPreferencesWindow('settings');
     },
@@ -102,7 +102,7 @@ export const getMenuItems = (
   result.push({
     label: l10n.get('tools'),
     click: () => {
-      shell.openExternal(TOOLS_LINK);
+      windowsController.showPreferencesWindow('tools');
     },
   });
 
@@ -148,6 +148,9 @@ export const getMenuItems = (
       label: '(Bekleyen talep yok)',
       type: 'normal',
       enabled: false,
+      click: () => {
+        windowsController.showPreferencesWindow('requests');
+      },
     });
   }
 

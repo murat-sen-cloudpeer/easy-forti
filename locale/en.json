@@ -4,7 +4,7 @@
   "error": "Error",
   "question": "Question",
   "warning": "Warning",
-  "about.app": "About imza.io",
+
   "exit": "Exit",
   "i_understand": "I understand",
   "sites": "Sites",
@@ -43,6 +43,7 @@
 
 
   "settings": "Settings",
+  "settings.app": "Application Settings",
   "settings.language": "Language",
   "settings.theme": "Theme",
   "settings.theme.system": "Use system setting",
@@ -63,11 +64,18 @@
   "settings.application.host": "Host address",
 
   "about": "About",
+  "about.app": "About imza.io",
   "about.thanks": "This application has been developed thanks to open source software",
   "about.copyright": "All rights reserved.",
   "about.termsOfUse": "Terms of use",
   "about.privacyStatement": "Privacy statement",
   "about.servicesAgreement": "Services agreement",
+  "about.url.termsOfUse": "https://imza.io",
+  "about.url.privacyStatement": "https://imza.io",
+  "about.url.servicesAgreement": "https://imza.io",
+  "about.license.name": "Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License",
+  "about.license.url": "https://creativecommons.org/licenses/by-nc-nd/4.0",
+  "about.license.label": "This work licensed under a",
 
   "tools": "Tools",
   "tools.verify": "Electronic Signature Verification",
@@ -76,6 +84,11 @@
   "tools.esign.desc": "Sign with electronic signature to any file or document",
   "tools.mobile": "Pair to imza.io Mobile",
   "tools.mobile.desc": "Display files or documents that requested electronic signature with imza.io Mobile and sign remotely",
+
+  "requests": "Requests to Sign",
+  "requests.pending": "%1 pending request(s)",
+  "requests.expiring": "You have pending request that are expiring",
+  "requests.empty": "No pending request",
 
   "updates": "Updates",
   "updates.check": "Check For Updates...",
@@ -87,10 +100,7 @@
   "preferences": "Preferences...",
   "quit": "Quit",
 
-  "requests": "Requests to Sign",
-  "requests.pending": "%1 pending request(s)",
-  "requests.expiring": "You have pending request that are expiring",
-  "requests.empty": "(No pending request)",
+
 
   "certificates.empty": "(Certificate not found)"
 }

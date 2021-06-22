@@ -6,7 +6,6 @@
 /* eslint-disable no-param-reassign */
 import { Notification, Dialog, dialog } from 'electron';
 import * as core from '@webcrypto-local/core';
-import { PCSCCard } from './pcsc';
 import { IProviderConfig, LocalProvider } from './provider';
 import { CardReaderService } from './services/card_reader';
 import { tray } from '../tray/index';
@@ -15,6 +14,7 @@ import { ServerOptions, Session, Notification as Notify } from '../../@types/con
 import { Server } from './connection';
 import { icons } from '../constants/files';
 import { windowsController } from '../windows';
+import { getConfig } from '../config';
 
 export interface IServerOptions extends ServerOptions {
   config: IProviderConfig;
@@ -48,8 +48,11 @@ export class EasyHub extends core.EventLogEmitter {
 
   public cardReader?: CardReaderService;
 
+  private config: IConfigure;
+
   constructor(options: IServerOptions) {
     super();
+    this.config = getConfig();
 
     // esig.hub websocket
     this.server = new Server(options)
@@ -113,12 +116,21 @@ export class EasyHub extends core.EventLogEmitter {
         });
       })
       .on('notify', (notification) => {
+        const urgency = {
+          trivial: 'low',
+          normal: 'normal',
+          important: 'critical',
+        };
+
         const appNotice = new Notification({
           title: notification.title,
           body: notification.body,
           icon: icons.favicon,
-          silent: notification.silent,
+          silent: !this.config.notificationSound && notification.silent,
+          urgency: urgency[this.config.urgency] as 'normal' | 'critical' | 'low' | undefined,
+          sound: 'normal',
         });
+
         appNotice.show();
       });
 
@@ -196,6 +208,8 @@ export class EasyHub extends core.EventLogEmitter {
         callback();
       }
     });
+
+    this.provider.stop();
 
     return this;
   }

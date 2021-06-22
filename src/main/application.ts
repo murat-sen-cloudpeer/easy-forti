@@ -81,7 +81,6 @@ export class Application {
      * Don't quit when all windows are closed.
      */
     app.on('window-all-closed', (e: Event) => e.preventDefault());
-
     this.onReady();
   }
 
@@ -204,6 +203,7 @@ export class Application {
 
   private async initServer() {
     await this.server.init();
+    app.on('quit', () => this.server.stop());
   }
 
   private initFirefoxProviders() {
@@ -257,28 +257,4 @@ export class Application {
       );
     }
   }
-  /*
-  private registerSCardService = async () => {
-    eventHub.on('cards-updated', (cards, certificates) => {
-      try {
-        tray.setCertificates(certificates);
-        this.socketService.createSession(certificates);
-      } catch (error) {
-        logger.error('application', error);
-      }
-    });
-
-    this.usbDevices = new UsbMonitor();
-  };
-
-  private registerSocketService = () => {
-    this.socketService = new SocketService();
-    this.socketService.on('status', (status: (string & 'connecting') | 'connected' | 'disconnected') => tray.setOnline(status));
-    this.socketService.on('sign-request', (signRequest: any) => this.showSigningWindow(signRequest));
-  };
-
-  private showSigningWindow = (signRequest: any) => {
-
-  };
-  */
 }
