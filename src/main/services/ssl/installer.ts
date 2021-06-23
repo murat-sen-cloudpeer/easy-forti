@@ -45,6 +45,7 @@ export class SslCertInstaller {
    */
   public async install(certPath: string) {
     const platform = os.platform();
+    logger.info('install', 'install SSL Certificate', { certPath });
 
     switch (platform) {
       case 'linux':
@@ -95,7 +96,7 @@ export class SslCertInstaller {
       const certName = this.policy.nssCertName;
       const options = {
         name: this.policy.osxAppName || 'imza.io EASY',
-        icons: this.policy.osxAppIcons || '/Applications/imza.io-EASY.app/Contents/Resources/static/icons/tray/mac/icon.icns',
+        icons: this.policy.osxAppIcons || '/Applications/imza.io EASY.app/Contents/Resources/static/icons/tray/mac/icon.icns',
       };
       const { username } = os.userInfo();
 

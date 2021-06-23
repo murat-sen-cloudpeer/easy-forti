@@ -3,6 +3,7 @@ module.exports = {
   parserOptions: {
     project: './tsconfig.json',
   },
+  excludedFiles: "./scripts/*.js",
   rules: {
     'react/prop-types': [
       2,

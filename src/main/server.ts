@@ -107,7 +107,6 @@ export class Server {
     logger.info('server', 'SSL certificate is loaded');
 
     await this.prepareConfig();
-
     // @ts-ignore
     sslData.config = this.config;
 

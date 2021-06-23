@@ -4,14 +4,11 @@
 import * as core from '@webcrypto-local/core';
 import { CardReader, PCSCLite } from '@webcrypto-local/server/build/types/types/pcsclite';
 import { WebCryptoLocalError } from '../error';
-
-const pcsc: () => PCSCLite = require('pcsclite');
-
+const pcsc = require('pcsclite');
 export interface PCSCWatcherEvent {
   reader: CardReader;
   atr?: Buffer;
 }
-
 export class PCSCWatcher extends core.EventLogEmitter {
   public source = 'pcsc';
 
@@ -27,7 +24,7 @@ export class PCSCWatcher extends core.EventLogEmitter {
     this.log('info', 'Start PCSC listening');
 
     try {
-      this.pcsc = pcsc();
+      this.pcsc = pcsc() as unknown as PCSCLite;
       this.pcsc.on('error', (err: any) => {
         this.emit('error', err);
       });

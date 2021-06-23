@@ -296,7 +296,7 @@ export class SslService {
         nssCertUtil = 'certutil';
         break;
       case 'darwin':
-        nssCertUtil = '/Applications/imza.io-EASY.app/Contents/MacOS/certutil'; // TODO: Use exec path
+        nssCertUtil = '/Applications/imza.io EASY.app/Contents/MacOS/certutil'; // TODO: Use exec path
         break;
       case 'win32':
         nssCertUtil = path.normalize(`${__dirname}\\..\\..\\certutil.exe`); // TODO: Use exec path
@@ -308,7 +308,7 @@ export class SslService {
     const installer = new SslCertInstaller({
       nssCertName: SslService.CERT_CA_COMMON_NAME,
       nssCertUtil,
-      osxAppIcons: '/Applications/imza.io-EASY.app/Contents/Resources/static/icons/tray/mac/icon.icns',
+      osxAppIcons: '/Applications/imza.io EASY.app/Contents/Resources/static/icons/tray/mac/icon.icns',
       osxAppName: 'imza.io EASY application',
     });
 

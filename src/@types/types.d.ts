@@ -1,5 +1,3 @@
-declare module 'smartcard';
-
 declare module '*.svg' {
   import * as React from 'react';
 

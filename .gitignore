@@ -8,3 +8,126 @@ node_modules
 .idea
 
 nss
+dist/builder-debug.yml
+dist/builder-effective-config.yaml
+dist/imza.io EASY-1.0.48-mac.zip
+dist/imza.io EASY-1.0.48.dmg
+dist/imza.io EASY-1.0.48.dmg.blockmap
+dist/latest-mac.yml
+dist/mac/imza.io EASY.app/Contents/Info.plist
+dist/mac/imza.io EASY.app/Contents/PkgInfo
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Electron Framework
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Helpers
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Libraries
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Resources
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/Current
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Electron Framework
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Helpers/chrome_crashpad_handler
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libEGL.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libffmpeg.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libGLESv2.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libswiftshader_libEGL.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libswiftshader_libGLESv2.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/libvk_swiftshader.dylib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Libraries/vk_swiftshader_icd.json
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_100_percent.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/chrome_200_percent.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/icudtl.dat
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/MainMenu.nib
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/resources.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/v8_context_snapshot.x86_64.bin
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/am.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ar.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/bg.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/bn.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ca.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/cs.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/da.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/de.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/el.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/en_GB.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/es.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/es_419.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/et.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fa.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fi.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fil.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/fr.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/gu.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/he.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hi.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hr.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/hu.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/id.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/it.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ja.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/kn.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ko.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/lt.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/lv.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ml.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/mr.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ms.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/nb.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/nl.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pl.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pt_BR.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/pt_PT.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ro.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ru.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sk.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sl.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sr.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sv.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/sw.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/ta.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/te.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/th.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/tr.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/uk.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/vi.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_CN.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/Resources/zh_TW.lproj/locale.pak
+dist/mac/imza.io EASY.app/Contents/Frameworks/Electron Framework.framework/Versions/A/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Mantle
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Resources
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Versions/Current
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Versions/A/Mantle
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Versions/A/Resources/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/Mantle.framework/Versions/A/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/ReactiveObjC
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/Resources
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/Versions/Current
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/ReactiveObjC
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/Resources/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/ReactiveObjC.framework/Versions/A/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Resources
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Squirrel
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Versions/Current
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Versions/A/Squirrel
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Versions/A/Resources/ShipIt
+dist/mac/imza.io EASY.app/Contents/Frameworks/Squirrel.framework/Versions/A/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (GPU).app/Contents/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (GPU).app/Contents/PkgInfo
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (GPU).app/Contents/MacOS/imza.io EASY Helper (GPU)
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (GPU).app/Contents/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Plugin).app/Contents/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Plugin).app/Contents/PkgInfo
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Plugin).app/Contents/MacOS/imza.io EASY Helper (Plugin)
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Plugin).app/Contents/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Renderer).app/Contents/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Renderer).app/Contents/PkgInfo
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Renderer).app/Contents/MacOS/imza.io EASY Helper (Renderer)
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper (Renderer).app/Contents/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper.app/Contents/Info.plist
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper.app/Contents/PkgInfo
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper.app/Contents/MacOS/imza.io EASY Helper
+dist/mac/imza.io EASY.app/Contents/Frameworks/imza.io EASY Helper.app/Contents/_CodeSignature/CodeResources
+dist/mac/imza.io EASY.app/Contents/MacOS/imza.io EASY
+dist/mac/imza.io EASY.app/Contents/Resources/app-update.yml
+dist/mac/imza.io EASY.app/Contents/Resources/app.asar
+dist/mac/imza.io EASY.app/Contents/Resources/imza.io EASY.icns
+dist/mac/imza.io EASY.app/Contents/_CodeSignature/CodeResources

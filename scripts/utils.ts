@@ -40,7 +40,7 @@ export class Logger {
  * @param message
  */
 export function spawn(command: string, args: string[] = []) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     Logger.debug(`> ${command} ${args.join(' ')}`);
 
     let item: childProcess.ChildProcess;
@@ -50,7 +50,7 @@ export function spawn(command: string, args: string[] = []) {
       item = childProcess.spawn(command, args, { stdio: 'inherit', shell: 'bash' });
     }
     item
-      .on('message', (msg) => {
+      .on('message', (msg: string) => {
         process.stdout.write(msg);
       })
       .on('close', (code) => {
@@ -85,7 +85,7 @@ export async function run(cb: () => Promise<void>) {
  * @param dest
  */
 export async function download(url: string, dest: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     Logger.debug(`Downloading ${url}`);
 
     progress(request(url)
@@ -109,7 +109,7 @@ export async function download(url: string, dest: string) {
 }
 
 export async function extract(zipFile: string, absolutePath: string) {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     zip(zipFile, { dir: absolutePath }, (err) => {
       if (err) {
         reject(err);

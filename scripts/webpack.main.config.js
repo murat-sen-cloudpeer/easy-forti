@@ -7,8 +7,10 @@ module.exports = merge.smart(baseConfig, {
   entry: {
     main: path.join(__dirname, '../src/main/index.ts'),
   },
+  resolve: {
+    extensions: ['.node'],
+  },
   externals: {
     pkcs11js: 'require("pkcs11js")',
     pcsclite: 'require("pcsclite")',
-  },
-});
+  }});
