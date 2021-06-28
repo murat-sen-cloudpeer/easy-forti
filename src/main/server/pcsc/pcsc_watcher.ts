@@ -111,32 +111,4 @@ export class PCSCWatcher extends core.EventLogEmitter {
       this.pcsc = null;
     }
   }
-
-  public on(event: 'info', cb: core.LogHandler): this;
-
-  public on(event: 'insert', cb: (e: PCSCWatcherEvent) => void): this;
-
-  public on(event: 'remove', cb: (e: PCSCWatcherEvent) => void): this;
-
-  public on(event: 'error', cb: (err: Error) => void): this;
-
-  public on(event: 'ready', cb: ()=>void): this;
-
-  public on(event: string, cb: (...args: any[]) => void): this {
-    return super.on(event, cb);
-  }
-
-  public emit(event: 'info', level: core.LogLevel, source: string, message: string, data?: core.LogData): boolean;
-
-  public emit(event: 'insert', e: PCSCWatcherEvent): boolean;
-
-  public emit(event: 'remove', e: PCSCWatcherEvent): boolean;
-
-  public emit(event: 'error', err: Error): boolean;
-
-  public emit(event: 'ready'): boolean;
-
-  public emit(event: string, ...args: any[]) {
-    return super.emit(event, ...args);
-  }
 }

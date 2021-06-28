@@ -9,7 +9,7 @@ import { CardSession } from '../../@types/pcsclite';
 
 export const baseTemplate = (): MenuItemConstructorOptions[] => [
   {
-    label: l10n.get('about.app'),
+    label: l10n.get('tray.about'),
     click: () => {
       windowsController.showPreferencesWindow('about');
     },
@@ -18,7 +18,7 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     type: 'separator',
   },
   {
-    label: l10n.get('certificates.empty'),
+    label: l10n.get('tray.certificates.empty'),
     enabled: false,
     click: () => {
 
@@ -28,7 +28,7 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     type: 'separator',
   },
   {
-    label: l10n.get('requests.empty'),
+    label: l10n.get('tray.requests.empty'),
     enabled: false,
     click: () => {
       windowsController.showPreferencesWindow('requests');
@@ -38,13 +38,13 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     type: 'separator',
   },
   {
-    label: l10n.get('settings.app'),
+    label: l10n.get('tray.settings'),
     click: () => {
       windowsController.showPreferencesWindow('settings');
     },
   },
   {
-    label: l10n.get('tools'),
+    label: l10n.get('tray.tools'),
     click: () => {
       windowsController.showPreferencesWindow('tools');
     },
@@ -53,7 +53,7 @@ export const baseTemplate = (): MenuItemConstructorOptions[] => [
     type: 'separator',
   },
   {
-    label: l10n.get('quit'),
+    label: l10n.get('tray.quit'),
     role: 'quit',
   },
 ];
@@ -68,13 +68,13 @@ export const getMenuItems = (
   (string & 'connecting') | 'connected' | 'disconnected',
   string
   > = {
-    connecting: 'Bağlantı kuruluyor',
-    connected: 'Çevrim içi',
-    disconnected: 'Çevrim dışı',
+    connecting: l10n.get('tray.connecting'),
+    connected: l10n.get('tray.online'),
+    disconnected: l10n.get('tray.offline'),
   };
 
   result.push({
-    label: connectionState[connectionStatus || 'disconnected'],
+    label: l10n.get(connectionState[connectionStatus || 'disconnected']),
     type: 'normal',
     icon: nativeImage.createFromPath(path.join(ICON_DIR, `${connectionStatus || 'disconnected'}.png`)),
     enabled: connectionStatus === 'connected',
@@ -82,25 +82,25 @@ export const getMenuItems = (
 
   result.push({
     type: 'separator',
-    sublabel: 'Bağlantı',
+    sublabel: l10n.get("tray")
   });
 
   result.push({
-    label: l10n.get('about.app'),
+    label: l10n.get('tray.about'),
     click: () => {
       windowsController.showPreferencesWindow('about');
     },
   });
 
   result.push({
-    label: l10n.get('settings.app'),
+    label: l10n.get('tray.settings'),
     click: () => {
       windowsController.showPreferencesWindow('settings');
     },
   });
 
   result.push({
-    label: l10n.get('tools'),
+    label: l10n.get('tray.tools'),
     click: () => {
       windowsController.showPreferencesWindow('tools');
     },
@@ -108,7 +108,7 @@ export const getMenuItems = (
 
   result.push({
     type: 'separator',
-    sublabel: 'Sertifikalar',
+    sublabel: l10n.get("tray.certificates"),
   });
 
   if (signatureCertificates && signatureCertificates.length > 0) {
@@ -124,7 +124,7 @@ export const getMenuItems = (
     });
   } else {
     result.push({
-      label: '(Sertifika bulunamadı)',
+      label: l10n.get("tray.certificates.empty"),
       type: 'normal',
       enabled: false,
     });
@@ -132,7 +132,7 @@ export const getMenuItems = (
 
   result.push({
     type: 'separator',
-    sublabel: 'İmza Talepleri',
+    sublabel: l10n.get("tray.requests"),
   });
 
   if (tasks && tasks.length > 0) {
@@ -145,7 +145,7 @@ export const getMenuItems = (
     });
   } else {
     result.push({
-      label: '(Bekleyen talep yok)',
+      label: l10n.get("tray.requests.empty"),
       type: 'normal',
       enabled: false,
       click: () => {
@@ -159,7 +159,7 @@ export const getMenuItems = (
   });
 
   result.push({
-    label: 'Çıkış',
+    label: l10n.get("tray.quit"),
     role: 'quit',
   });
 

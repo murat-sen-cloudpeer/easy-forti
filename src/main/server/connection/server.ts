@@ -21,16 +21,8 @@ import { getConfig } from '../../config';
 import connection, {
   NotificationInfo, RequestSignature, RequestSigningCert, SignatureRequest, Notification,
 } from '../../../@types/connection';
-import { ServerListeningEvent } from './events/listening';
-import { ServerDisconnectEvent } from './events/disconnect';
-import { ServerErrorEvent } from './events/error';
-import { ServerMessageEvent } from './events/message';
-import {
-  CertificateRequestProto, CertificateResultProto, SignatureRequestProto, SignatureResultProto,
-} from './events/proto';
 import { CardSession } from '../../../@types/pcsclite';
 import { Session } from '../../../@types/connection';
-import { X509Certificate } from '../crypto/openssl/pki/x509';
 
 /**
  * Https/wss server based on 2key-ratchet protocol

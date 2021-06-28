@@ -40,8 +40,20 @@
   "keys.empty.search": "Arama kriterlerine uyan web sitesi bulunamadı.",
   "remove": "Kaldır",
 
+  "tray": "imza.io EASY",
+  "tray.connecting": "Bağlantı kuruluyor",
+  "tray.online": "Çevrim içi",
+  "tray.offline": "Çevrim dışı",
+  "tray.certificates": "Sertifikalar",
+  "tray.certificates.empty": "(Sertifika bulunamadı)",
+  "tray.settings": "Uygulama Ayarları",
+  "tray.about": "imza.io Hakkında",
+  "tray.tools": "Araçlar",
+  "tray.requests": "İmza Talepleri",
+  "tray.requests.empty": "(Bekleyen talep yok)",
+  "tray.quit": "Çıkış",
+
   "settings": "Ayarlar",
-  "settings.app": "Uygulama Ayarları",
   "settings.language": "Dil",
   "settings.theme": "Tema",
   "settings.theme.system": "Sistem ayarını kullan",
@@ -62,7 +74,6 @@
   "settings.application.host": "Sunucu adresi",
 
   "about": "Hakkında",
-  "about.app": "imza.io Hakkında",
   "about.thanks": "Bu uygulama açık kaynaklı yazılımlar sayesinde geliştirilmiştir.",
   "about.copyright": "Her hakkı saklıdır.",
   "about.termsOfUse": "Kullanım Koşulları",
@@ -96,7 +107,7 @@
   "updates.available.learn": "Bu güncelleme hakkında daha fazla bilgi edinin",
   "download": "İndir",
   "preferences": "Tercihler...",
-  "quit": "Çıkış",
+
 
 
 

@@ -216,9 +216,6 @@ export class EasyHub extends core.EventLogEmitter {
 
   public async start(address: string) {
     await this.server.connect(address);
-
-    this.cardReader?.start();
-
     return this;
   }
 

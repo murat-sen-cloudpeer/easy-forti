@@ -41,9 +41,20 @@
   "keys.empty.search": "There are no websites matching that search.",
   "remove": "Remove",
 
+  "tray": "imza.io EASY",
+  "tray.connecting": "Connecting",
+  "tray.online": "Online",
+  "tray.offline": "Offline",
+  "tray.certificates": "Certificates",
+  "tray.certificates.empty": "(Certificate not found)",
+  "tray.settings": "Application Settings",
+  "tray.about": "About imza.io",
+  "tray.tools": "Tools",
+  "tray.requests": "Signature Requests",
+  "tray.requests.empty": "(No pending requests)",
+  "tray.quit": "Quit",
 
   "settings": "Settings",
-  "settings.app": "Application Settings",
   "settings.language": "Language",
   "settings.theme": "Theme",
   "settings.theme.system": "Use system setting",
@@ -64,7 +75,6 @@
   "settings.application.host": "Host address",
 
   "about": "About",
-  "about.app": "About imza.io",
   "about.thanks": "This application has been developed thanks to open source software",
   "about.copyright": "All rights reserved.",
   "about.termsOfUse": "Terms of use",
@@ -97,10 +107,5 @@
   "updates.available": "A new update is available.",
   "updates.available.learn": "Learn more about this update",
   "download": "Download",
-  "preferences": "Preferences...",
-  "quit": "Quit",
-
-
-
-  "certificates.empty": "(Certificate not found)"
+  "preferences": "Preferences..."
 }

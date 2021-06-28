@@ -58,6 +58,8 @@ export class Server {
         options.config.opensc = path.join(process.execPath, '..', 'opensc-pkcs11.dll');
         break;
       case 'darwin':
+        options.config.opensc = path.join(process.execPath, '../../lib', 'opensc-pkcs11.so');
+        break;
       case 'linux':
         options.config.opensc = path.join(process.execPath, '..', 'opensc-pkcs11.so');
         break;

@@ -149,26 +149,20 @@
     "asar": true,
     "copyright": "Copyright (C) 2021, Lyfe Dijital Yazılım Ticaret A.Ş.",
     "directories": {
-      "app": ".",
-      "output": "out",
-      "buildResources": "release"
+      "output": "release"
     },
-    "files": [
-      "package.json",
-      "out/**/*",
-      "node_modules",
-      "nss",
-      "locale",
-      "DISCLAIMER.txt",
-      "LICENSE.txt",
-      "libpvpkcs11.dylib"
-    ],
     "mac": {
+      "hardenedRuntime": false,
+      "gatekeeperAssess": false,
+      "artifactName": "${productName}-${version}-${arch}.${ext}",
+      "entitlements": "entitlements.mac.plist",
+      "entitlementsInherit": "entitlements.mac.plist",
       "target": [
         "dmg",
         "pkg"
       ],
       "icon": "src/static/icons/tray/mac/icon.icns",
+      "type": "distribution",
       "darkModeSupport": true
     },
     "dmg": {
@@ -192,6 +186,32 @@
       "license": "LICENSE.txt",
       "overwriteAction": "upgrade",
       "allowRootDirectory": false
+    },
+    "win": {
+      "icon": "src/static/icons/tray/win/icon.ico",
+      "legalTrademarks": "imza.io EASY",
+      "sign": false,
+      "requestedExecutionLevel": "highestAvailable",
+      "target": [
+        {
+          "target": "msi",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": true,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "src/static/icons/tray/win/icon.ico",
+      "uninstallerIcon": "src/static/icons/tray/win/icon.ico",
+      "installerHeaderIcon": "src/static/icons/tray/win/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "imza.io EASY",
+      "multiLanguageInstaller": true,
+      "unicode": true
     }
   }
 }
